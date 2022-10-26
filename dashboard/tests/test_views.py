@@ -7,8 +7,6 @@ from django.contrib.auth import get_user_model
 
 
 
-User = get_user_model()
-
 # Index View with user not logged in, should redirect to login page
 class DashboardTestNoLogin(TestCase):
 

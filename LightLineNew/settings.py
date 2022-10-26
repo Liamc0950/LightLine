@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'landing',
     'accounts',
+    'projects',
     'notes',
     'coverage',
     'dashboard',
@@ -136,8 +137,5 @@ LOGIN_REDIRECT_URL = "/dashboard"
 #Logout Redirect
 LOGOUT_REDIRECT_URL = "/"
 
-AUTH_USER_MODEL = "accounts.Profile"  # new
+# AUTH_USER_MODEL = "accounts.Profile"  # new
 
-####
-#TESTING
-####

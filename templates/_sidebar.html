@@ -63,7 +63,7 @@
                             {% for project in projects %}
                             <li>
                                 <a>
-                                <form method="POST" action="/lightlineapp/switchActiveProject/">
+                                <form method="POST" action="/projects/switchActiveProject/">
                                     {% csrf_token %}
                                     <button class="projectButton" type="submit">
                                         {{ project }}
@@ -75,7 +75,7 @@
                             </li>
                             {% endfor %}
                             <li>
-                                <a href="/projectManager/createProject">
+                                <a href="/projects/projectCreate">
                                     Create New Project
                                 </a>
                             </li>            
@@ -84,7 +84,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/projectManager/projectSettings">
+                    <a href="/projects">
                         <i class="fa fa-cog"></i>
                         <span class="menu-text">Project Settings</span>
                     </a>

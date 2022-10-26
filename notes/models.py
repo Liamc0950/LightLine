@@ -1,8 +1,9 @@
+from email.policy import default
 from django.db import models
 
 #from database.models import *
-#from projectManager.models import Project
-#from landing.models import Profile
+from projects.models import Project
+from accounts.models import Profile
 
 FIELD_CHOICES = (
     ('Instrument Type','INSTRUMENT_TYPE'),
@@ -23,6 +24,14 @@ FIELD_CHOICES = (
 
 )
 
+ASSIGNMENT_CHOICES = (
+    ('Production Electrician','PRODUCTION_ELECTRICIAN'),
+    ('Designer', 'DESIGNER'),
+    ('Programmer','PROGRAMMER'),
+)
+
+
+
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
     createdAt = models.DateTimeField(auto_now_add=True)
@@ -30,13 +39,16 @@ class Note(models.Model):
     # #Note text
     # noteText = models.CharField(max_length=256)
     # #Project that this note is associated with - this note instance will only be associated with one project
-    # project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     # #Profile of user who created this note
     # createdBy = models.ForeignKey(Profile, related_name="createdBy", on_delete=models.CASCADE)
     # #Profile of user this note is assigned to
+    assignedTo = models.CharField(max_length=32, choices=ASSIGNMENT_CHOICES, default='PRODUCTION_ELECTRICIAN')
     # assignedTo = models.ForeignKey(Profile, related_name="assignedTo", on_delete=models.CASCADE, blank=True, null=True)
     # #Profile of the user who last updated this note
     # lastUpdatedBy = models.ForeignKey(Profile, related_name="lastUpdatedBy", on_delete=models.CASCADE, blank=True, null=True)
+
+    forGroup = models.BooleanField(default=False)
 
     #PRIORITY
     priority = models.IntegerField(default=5)

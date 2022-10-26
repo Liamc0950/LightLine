@@ -8,13 +8,20 @@
   <h2>DASHBOARD</h1>
   <h3>PROJECTS</h3>
   {% if projects %}
+    <table class="table table-hover table-custom">
+    <thead>
+    <tr>
+        <th scope="col">Project Name</th>
+        <th scope="col">Venue</th>
+    </tr>
+    </thead>    
     {% for project in projects %}
       <tr class="projectRow">
           <td data-id="{{ project.id }}" data-input="text" data-type="name" scope="row" data-model="database">{{project.showName}}</td>
           <td data-id="{{ project.id }}" data-input="text" data-type="venue" data-model="database"> {{project.venue}}</td>
           <!-- DELETE BUTTON -->
           <td>
-              <a href="./projects/deleteProject/{{project.id}}" class="btn btn-danger"><i class="fa fa-trash-alt"> </i></a>
+              <a href="/projects/projectDelete/{{project.id}}" class="btn btn-danger"><i class="fa fa-trash-alt"> </i></a>
           </td>
       </tr>
     {% endfor %}

@@ -39,11 +39,21 @@ body {
    }
 }
 
+/*  */
+/* TABLES */
+/*  */
 
+.table{
+  color: azure !important;
+}
 
+.table-hover>tbody>tr:hover>* {
+  --bs-table-accent-bg: var(--bs-table-hover-bg);
+  color: red;
+}
 
 /*  */
-/* AUTH */
+/* BUTTONS */
 /*  */
 
 .loginPane{
@@ -59,6 +69,7 @@ body {
 }
 
 /* BUTTONS */
+/* Authentication Buttons */
 a.authButton{
   display:inline-block;
   padding:0.35em 1.2em;
@@ -80,6 +91,32 @@ a.authButton:hover{
 
 @media all and (max-width:30em){
   a.authButton{
+    display:block;
+    margin:0.4em auto;
+  }
+}
+/* In-App Buttons (currently no different, potentially could refactor in the future) */
+a.appButton{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+}
+a.appButton:hover{
+  color:#000000;
+  background-color:#FFFFFF;
+}
+
+@media all and (max-width:30em){
+  a.appButton{
     display:block;
     margin:0.4em auto;
   }
