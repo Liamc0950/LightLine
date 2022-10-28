@@ -22,10 +22,23 @@ class Project(models.Model):
     #If true, database, cueList, Followspot and notes views will display data from this project
     active = models.BooleanField(default=False)
 
-    
 
     def __str__(self):
         return self.showName
 
     def isActive(self):
         return self.active
+    
+    # Activate project and deactive all others
+    def activate(self, profile):
+        self.deactivateOthers(profile)
+        self.active = True
+        self.save()
+        print(self.showName, " ACTIVATED ", self.active)
+    
+    def deactivateOthers(self, profile):
+        userProjects = Project.objects.filter(projectCreator= profile, active=True)
+        for project in userProjects:
+            print("DEACTIVATE: ", project)
+            project.active = False
+            project.save()

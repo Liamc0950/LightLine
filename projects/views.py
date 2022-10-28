@@ -22,7 +22,10 @@ def index(request):
 
     # Get projects assigned to user
     projects = Project.objects.filter(projectCreator=request.user.profile)
-    activeProject = Project.objects.get(active=True)
+    try:
+        activeProject = Project.objects.get(active=True)
+    except:
+        activeProject = None
 
     # Create context array
     context = {
@@ -47,17 +50,13 @@ class ProjectCreateView(CreateView):
     def get_initial(self, *args, **kwargs):
         initial = super(ProjectCreateView, self).get_initial(**kwargs)
         initial['projectCreator'] = self.request.user.profile
-        initial['active'] = True
         return initial
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
-        # Sets all projects to active=False 
-        userProjects = Project.objects.filter(projectCreator= self.request.user.profile, active=True)
-        for project in userProjects:
-            project.active = False
-            project.save()
-        return super().form_valid(form)
+        response = super().form_valid(form) # save newly created Project object
+        self.object.activate(self.request.user.profile)
+        return response
 
 
 #Delete Project - deletes given project(designated by parent of delete button)

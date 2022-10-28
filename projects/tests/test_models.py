@@ -14,6 +14,16 @@ class ProjectTestActive(TestCase):
         self.assertEqual(self.project.__str__(), self.project.showName)
         self.assertEqual(self.project.isActive(), True)
 
+    def test_activate(self):
+        oldProject = Project.objects.create(showName='oldProject', showNameShort='T', venue='Test Venue', projectCreator=self.user.profile)
+        newProject = Project.objects.create(showName='newProject', showNameShort='T', venue='Test Venue', projectCreator=self.user.profile)
+        newProject.activate(self.user.profile)
+                
+        self.assertEqual(oldProject.active, False)
+        self.assertEqual(newProject.active, True)
+        
+
+
 # test inactive Project
 class ProjectTestInactive(TestCase):
 

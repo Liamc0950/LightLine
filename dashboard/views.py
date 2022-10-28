@@ -8,8 +8,10 @@ def index(request):
 
     # Get projects assigned to user
     projects = Project.objects.filter(projectCreator=request.user.profile)
-    activeProject = Project.objects.get(active=True)
-
+    try:
+        activeProject = Project.objects.get(active=True)
+    except:
+        activeProject = None
     # Create context array
     context = {
         'projects' : projects,
