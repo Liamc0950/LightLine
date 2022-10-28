@@ -2,21 +2,22 @@ from django.test import TestCase
 from accounts.models import Profile
 from django.utils import timezone
 from accounts.forms import ProfileCreationForm
+from django.contrib.auth.models import User
 
 # models test
-class ProfileTest(TestCase):
+class UserTest(TestCase):
 
-    def create_profile(self, username='username', first_name='first_name', last_name='last_name',email='email'):
-        return Profile.objects.create(
+    def create_user(self, username='username', first_name='first_name', last_name='last_name',email='email'):
+        return User.objects.create(
                                     username=username, 
                                     first_name=first_name,
                                     last_name=last_name, 
-                                    email = email,
-                                    created=timezone.now(),
-                                    lastUpdate=timezone.now())
-
+                                    email = email
+                                    )
     def test_profile_creation(self):
-        profile = self.create_profile()
-        self.assertTrue(isinstance(profile, Profile))
-        self.assertEqual(profile.__str__(), profile.username)
-        self.assertEqual(profile.getName(), profile.first_name + " " + profile.last_name)
+        user = self.create_user()
+        self.assertTrue(isinstance(user, User))
+        # Check .__str__()
+        self.assertEqual(user.profile.__str__(), user.username)
+        # Check getName()
+        self.assertEqual(user.profile.getName(), user.first_name + " " + user.last_name)

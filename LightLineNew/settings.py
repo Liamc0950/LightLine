@@ -9,8 +9,16 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import environ
 import os
+
+
+# Initialise environment variables
+
+env = environ.Env()
+
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +28,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '95km*#*8d+g&vq6nyc%oa$+3bn6asj=9%a5j%4gp_%c+kh3bi4'
+SECRET_KEY = env('SECRET KEY', default = 'j#jg_v7*19x+&i(+wn8vl9zfu6-=l_887o!(pefvx((b^g4&hp')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = int(env("DEBUG", default=1))
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOSTS").split(" ")]
 
 
 # Application definition
@@ -83,12 +92,19 @@ WSGI_APPLICATION = 'LightLineNew.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lightline',
-        'USER': 'liam',
-        'PASSWORD': 'LPC1223d5' #NOT FOR PRODUCTION!!
+        'ENGINE': env('DB_ENGINE', default='django.db.backends.postgresql_psycopg2'),
+        'NAME': env('DB_NAME', default='lightline'),
+        'USER': env('DB_USER', default='liam'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='5432'),
     }
 }
+
+CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS").split(" ")
+
+TESTING = False
+TEST_RUNNER = "LightLineNew.test_runner.LightLineTestRunner"
 
 
 # Password validation

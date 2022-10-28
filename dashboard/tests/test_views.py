@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test.client import Client
 from django.contrib.auth import get_user_model
-
+from projects.models import Project
 
 
 # Index View with user not logged in, should redirect to login page
@@ -21,8 +21,11 @@ class DashboardTestLogin(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user('test', 'test@test.com', 'testpassword')
+        project = Project.objects.create(showName='Test', showNameShort='T', venue='Test Venue', projectCreator=self.user.profile)
+        project.active = True
+        project.save()
 
-    def testLogin(self):
+    def test_Login(self):
         self.client.login(username='test', password='testpassword')
         url = reverse("dashboard:index")
         resp = self.client.get(url)
