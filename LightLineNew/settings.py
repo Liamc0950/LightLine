@@ -28,13 +28,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET KEY', default = 'j#jg_v7*19x+&i(+wn8vl9zfu6-=l_887o!(pefvx((b^g4&hp')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = int(env("DEBUG", default=1))
-DEBUG = True
+DEBUG = int(env("DEBUG"))
 
-# ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOSTS").split(" ")]
+ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOSTS").split(" ")]
 
 
 # Application definition
@@ -92,12 +91,12 @@ WSGI_APPLICATION = 'LightLineNew.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DB_ENGINE', default='django.db.backends.postgresql_psycopg2'),
-        'NAME': env('DB_NAME', default='lightline'),
-        'USER': env('DB_USER', default='liam'),
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST', default='localhost'),
-        'PORT': env('DB_PORT', default='5432'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
