@@ -121,4 +121,38 @@ a.appButton:hover{
     margin:0.4em auto;
   }
 }
-  
+
+/*  */
+/* ACCORDION */
+/*  */
+.accordion-item {
+  border: 1px solid rgba(35, 65, 100, .15);
+  background: rgb(42, 46, 51);
+}
+
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background: rgb(101, 104, 109);
+  color: #e8e8e8;
+}
+
+.accordion-button:is(.collapsed) {
+  color: inherit;
+  background: rgb(87, 90, 94);
+  color: #e8e8e8;
+}
+
+
+.accordion-button:not(.collapsed)::after  {
+  filter: brightness(00%) invert(70%);
+}
+
+.accordion-button:focus {
+  box-shadow: inherit;
+}
+
+@media (max-width: 767px) {
+  .accordion-body h3 {
+      font-size: calc(.95rem + 1.5vw);
+  }
+}

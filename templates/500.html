@@ -1,0 +1,35 @@
+{% load static %}
+
+{% load bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightLine</title>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="loginPane">
+            <div class="loginContent">
+                <h1>ERROR 500</h1>
+                <p>
+                    I probably haven't made this page yet.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

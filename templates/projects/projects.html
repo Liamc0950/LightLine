@@ -4,8 +4,6 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <h2>DASHBOARD</h1>
   <h3>PROJECTS</h3>
   {% if projects %}
     <table class="table table-hover table-custom">

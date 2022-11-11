@@ -27,4 +27,5 @@ urlpatterns = [
     path('notes/', include("notes.urls")),
     path('dashboard/', include("dashboard.urls")),
     path('projects/', include("projects.urls", namespace='projects')),
+    path('cueList/', include("cueList.urls", namespace='cueList')),
 ]

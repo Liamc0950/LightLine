@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap5',
+    'bootstrap_modal_forms',
     'django.contrib.postgres',
     'landing',
     'accounts',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'notes',
     'coverage',
     'dashboard',
+    'cueList',
 ]
 
 MIDDLEWARE = [

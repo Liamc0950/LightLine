@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 
 
 from .models import *
-#from projectManager.models import *
 #from cueList.models import *
 #from landing.models import Profile
 
