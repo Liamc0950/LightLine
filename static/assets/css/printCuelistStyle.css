@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+
+/* -------------------------------------------------------------- */
+/* Import font
+----------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@100;200;300;400;500;600;700&amp;display=swap");
+
+/* Enable exact colors in printing */
+body{
+  -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+}
+
+
+body,
+html {
+  height: 100%;
+  background-color: white !important;
+  font-family: 'Courier Prime', Courier, monospace;
+  color:black;
+}
+
+.container-fluid{
+  margin-top: 1rem;
+}
+
+/*  */
+/* PAGE TRANSITIONS */
+/*  */
+body {
+  animation: fadeInAnimation ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+
+/*  */
+/* TABLES */
+/*  */
+
+.table{
+  color: black !important;
+  margin-top: 1rem !important;
+}
+
+.table-hover>tbody>tr:hover>* {
+  --bs-table-accent-bg: var(--bs-table-hover-bg);
+  color: red;
+}
+
+.left {
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+
+table tr:nth-child(odd) td{
+  background-color: lightcyan;
+}
+table tr:nth-child(even) td{
+  background-color: white;
+}
+
+.header{
+  background-color: lightgrey;
+}

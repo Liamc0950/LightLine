@@ -1,0 +1,105 @@
+{% load static %}
+
+{% load bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/img/site.webmanifest' %}">
+
+    {% block stylesheets %}
+    <!--Boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/printCuelistStyle.css' %}">
+        
+    {% endblock stylesheets %}
+
+    <title>LightLine | Followspot Tracking</title>
+  </head>
+  <body>
+
+    <!-- HEADING -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="left">
+                    <h5>
+                        {{ activeProject.showName }}
+                    </h5>
+                    <h7>
+                        LD: {{ activeProject.projectCreator.getName }}
+                    </h7>    
+                </div>
+            </div>
+            <div class="col">
+                <div class="center">
+                    <h3>
+                        CUE LIST
+                    </h3>    
+                </div>
+            </div>
+            <div class="col">
+                <div class="right">
+                    <h6>
+                        {{ date }}
+                    </h6>
+                    <h6>
+                        {{ activeCueList }}
+                    </h6>    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr class="tableHead">
+            <th scope="col">Cue Number</th>
+            <th scope="col">Label</th>
+            <th scope="col">Page</th>
+            <th scope="col">Time</th>
+            <!-- <th scope="col">Block</th> -->
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        {% if cueList %}
+        <tbody>
+            {% for cue in cueList %}
+                {% if cue.getHeader %}
+                    <tr class="header">
+                        <th class="center" colspan="6" data-id="{{ cue.getHeader.headerTitle }}" data-input="text" data-type="headerTitle" scope="row" data-model="header">{{cue.getHeader}}</th>
+                    </tr>
+                {% endif%}
+                <tr class="cueRow">
+                    <td data-id="{{ cue.id }}" data-input="text" data-type="eosCueNumber" scope="row" data-model="cue">{{cue.eosCueNumber}}</td>
+                    <td data-id="{{ cue.id }}" data-input="text" data-type="cueLabel" data-model="cue"> {{cue.cueLabel}}</td>
+                    <td data-id="{{ cue.id }}" data-input="text" data-type="pageNumber" data-model="cue">{{cue.pageNumber}}</td>
+                    <td data-id="{{ cue.id }}" data-input="text" data-type="cueTime" data-model="cue">{{cue.cueTime}}</td>
+                    <!-- <td class="editable" data-id="{{ cue.id }}" data-input="text" data-type="cueTime" data-model="cue">{% if cue.block %} B {% endif %}</td> -->
+                    <td data-id="{{ cue.id }}" data-input="text" data-type="cueDescription" data-model="cue">{{cue.cueDescription}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+    </body>
+</html>
+

@@ -4,14 +4,10 @@
 
     {% include "_modal.html" %}
     <nav class="navbar navbar-dark bg-dark sticky-top">
-        <a class="navbar-brand" href="#">CUE LISTS</a>
+        <a class="navbar-brand" href="#">CUE LIST PRINT LAYOUT</a>
         <div class="btn-toolbar" role="toolbar" aria-label="Followspot Tracking toolbar">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <a href="addNextCue/{{activeCueList.getLastCue}}" class="addNextCue btn btn-secondary"type="button" name="button">Add Cue</a>
-                <button class="addCue btn btn-secondary"type="button" name="button">Insert Cue</button>                
-                <button class="addHeader btn btn-secondary"type="button" name="button">Add Header</button>                
-                <a href="printLayout" class="printLayout btn btn-secondary" style="background-color: transparent;">Print Layout</a>
-                <a href="exportEosCSV/{{activeCueList.id}}" class="printPDF btn btn-secondary" style="background-color: transparent;">Export EOS CSV</a>
+                <a href="../print" class="print btn btn-secondary" style="background-color: transparent;">Print</a>
             </div>
             {% if projectCueLists %}
             <div class="dropdown">
@@ -30,9 +26,6 @@
                         </button>
                     </form>
                 </li>
-                <li>
-                    <a class="dropdown-item btn-secondary" href="createCueList">Create New Cue List</a>
-                </li>
                 {% endfor %}
                 </ul>
             </div>
@@ -48,7 +41,6 @@
             <th scope="col">Time</th>
             <!-- <th scope="col">Block</th> -->
             <th scope="col">Description</th>
-            <th scope="col"></th>
         </tr>
         </thead>
         {% if cueList %}
@@ -66,9 +58,6 @@
                     <td class="editable" data-id="{{ cue.id }}" data-input="text" data-type="cueTime" data-model="cue">{{cue.cueTime}}</td>
                     <!-- <td class="editable" data-id="{{ cue.id }}" data-input="text" data-type="cueTime" data-model="cue">{% if cue.block %} B {% endif %}</td> -->
                     <td class="editable" data-id="{{ cue.id }}" data-input="text" data-type="cueDescription" data-model="cue">{{cue.cueDescription}}</td>
-                    <td>
-                        <a href="deleteCue/{{cue.id}}" class="btn btn-danger"><i class="fa fa-trash-alt"> </i></a>
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>

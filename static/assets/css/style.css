@@ -9,7 +9,7 @@
 body,
 html {
   height: 100%;
-  background-color: black !important;
+  background-color: #212529 !important;
   font-family: 'Courier Prime', Courier, monospace;
   color:azure;
 }
@@ -165,4 +165,8 @@ a.appButton:hover{
 .modal-content{
   background-color: rgb(42, 46, 51);
   padding: 1rem;
+}
+
+.center {
+  text-align: center;
 }

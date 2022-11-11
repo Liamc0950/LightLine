@@ -1,5 +1,7 @@
 #Boilerplate
 from __future__ import unicode_literals
+import datetime
+from io import BytesIO
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse_lazy
@@ -15,6 +17,7 @@ from .models import *
 
 from accounts.models import *
 from projects.models import *
+
 
 from .forms import *
 
@@ -59,6 +62,78 @@ def cueListView(request):
 
     return HttpResponse(template.render(context, request))
 
+@login_required
+#Print Layout  view    
+def printLayout(request):
+    #try to get the active project, then get all the cues in cueList linked to active project
+    try:
+        activeProject = Project.objects.get(projectCreator=request.user.profile, active=True)
+    #if no active project, set to none
+    except:
+        activeProject = Project.objects.none()
+
+    #get all cueLists of given project
+    projectCueLists = CueList.objects.filter(project = activeProject)
+
+    #try to get the active cueList
+    try:
+        activeCueList = CueList.objects.get(project = activeProject, active = True)
+    except:
+        activeCueList = CueList.objects.none()
+
+    #get all cues where cueList's project is the active project and cueList is active
+    activeCues = Cue.objects.order_by('eosCueNumber').filter(cueList__project = activeProject, cueList__active = True)
+
+    #get all projects created by user
+    projects = Project.objects.filter(projectCreator=request.user.profile)
+    
+    template = loader.get_template('cueList/printLayout.html')
+    context = {
+        'cueList': activeCues,
+        'activeProject': activeProject,
+        'projects' : projects,
+        'projectCueLists' : projectCueLists,
+        'activeCueList' : activeCueList,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+@login_required
+#Final Print View
+def print(request):
+    #try to get the active project, then get all the cues in cueList linked to active project
+    try:
+        activeProject = Project.objects.get(projectCreator=request.user.profile, active=True)
+    #if no active project, set to none
+    except:
+        activeProject = Project.objects.none()
+
+    #get all cueLists of given project
+    projectCueLists = CueList.objects.filter(project = activeProject)
+
+    #try to get the active cueList
+    try:
+        activeCueList = CueList.objects.get(project = activeProject, active = True)
+    except:
+        activeCueList = CueList.objects.none()
+
+    #get all cues where cueList's project is the active project and cueList is active
+    activeCues = Cue.objects.order_by('eosCueNumber').filter(cueList__project = activeProject, cueList__active = True)
+
+    #get all projects created by user
+    projects = Project.objects.filter(projectCreator=request.user.profile)
+    
+    template = loader.get_template('cueList/print.html')
+    context = {
+        'cueList': activeCues,
+        'activeProject': activeProject,
+        'projects' : projects,
+        'projectCueLists' : projectCueLists,
+        'activeCueList' : activeCueList,
+        'date' : datetime.date.today(),
+    }
+
+    return HttpResponse(template.render(context, request))
 
 
 #Delete Cue - deletes given cue (designated by parent of delete button)
@@ -97,18 +172,18 @@ def cueCreateNextCueList(request, lastCueNum):
     return HttpResponseRedirect('/cueList')
 
 #PrintPDF
-def printPDF(request):
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
+# def printPDF(request):
+#     # Create the HttpResponse object with the appropriate PDF headers.
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
 
-    buffer = BytesIO()
+#     buffer = BytesIO()
 
-    report = PDF_Printer(buffer, 'Letter', request)
-    pdf = report.printTest()
+#     report = PDF_Printer(buffer, 'Letter', request)
+#     pdf = report.printTest()
 
-    response.write(pdf)
-    return response
+#     response.write(pdf)
+#     return response
 
 def exportEosCSV(request, activeCueListID):
     # Create the HttpResponse object with the appropriate CSV header.
@@ -179,10 +254,10 @@ class CueCreateView(BSModalCreateView):
         return initial
 # #CueList Add Header
 class HeaderCreateView(BSModalCreateView):
-    template_name = 'lightlineapp/createHeader.html'
+    template_name = 'cueList/createHeader.html'
     form_class = HeaderForm
     success_message = 'Success: Header was created.'
-    success_url = reverse_lazy('cueList')
+    success_url = reverse_lazy('cueList:cueList')
 
     def get_initial(self, *args, **kwargs):
         initial = super(HeaderCreateView, self).get_initial(**kwargs)

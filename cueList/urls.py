@@ -23,8 +23,10 @@ urlpatterns = [
     path('addNextCue/<int:lastCueNum>', views.cueCreateNextCueList, name='addNextCue'),
     #cueList add Header
     path('addHeader/', views.HeaderCreateView.as_view(), name='addHeader'),
-    #CueList PrintPDF
-    path('printPDF/', views.printPDF, name='printPDF'),
+    #CueList Print Layout
+    path('printLayout/', views.printLayout, name='printLayout'),
+    #CueList Print
+    path('print/', views.print, name='print'),
     #CueList Export Eos CSV
     path('exportEosCSV/<int:activeCueListID>', views.exportEosCSV, name='exportEosCSV'),
     #CueList Create CueList
