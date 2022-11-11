@@ -24,31 +24,34 @@ FIELD_CHOICES = (
 
 )
 
-ASSIGNMENT_CHOICES = (
-    ('Production Electrician','PRODUCTION_ELECTRICIAN'),
-    ('Designer', 'DESIGNER'),
-    ('Programmer','PROGRAMMER'),
-)
 
+class Assignee(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
 
 
 class Note(models.Model):
     id = models.AutoField(primary_key=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     # lastUpdate = models.DateTimeField(auto_now=True)
-    # #Note text
-    # noteText = models.CharField(max_length=256)
-    # #Project that this note is associated with - this note instance will only be associated with one project
+    #Project that this note is associated with - this note instance will only be associated with one project
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     # #Profile of user who created this note
-    # createdBy = models.ForeignKey(Profile, related_name="createdBy", on_delete=models.CASCADE)
+    createdBy = models.ForeignKey(Profile, related_name="createdBy", on_delete=models.CASCADE)
     # #Profile of user this note is assigned to
-    assignedTo = models.CharField(max_length=32, choices=ASSIGNMENT_CHOICES, default='PRODUCTION_ELECTRICIAN')
-    # assignedTo = models.ForeignKey(Profile, related_name="assignedTo", on_delete=models.CASCADE, blank=True, null=True)
+    assignedTo = models.ForeignKey(Assignee, related_name="assignedBy", on_delete=models.CASCADE, blank=True, null=True)
     # #Profile of the user who last updated this note
     # lastUpdatedBy = models.ForeignKey(Profile, related_name="lastUpdatedBy", on_delete=models.CASCADE, blank=True, null=True)
 
+    #is the note for the group
     forGroup = models.BooleanField(default=False)
+
+    #has the note been completed
+    completed = models.BooleanField(default=False)
+
 
     #PRIORITY
     priority = models.IntegerField(default=5)
@@ -59,10 +62,15 @@ class Note(models.Model):
     def __str__(self):
         return self.noteText
 
+    def complete(self):
+        self.completed = True
+        self.save()
+
+
 
 class WorkNote(Note):
     noteText = models.CharField(max_length=256)
-    channelList = models.CharField(max_length=5)
+    channelList = models.CharField(max_length=32)
     changeFieldSelection = models.CharField(max_length=16, choices=FIELD_CHOICES, default='INSTRUMENT_TYPE')
     #THESE FIELD WILL BE MADE AVAILABLE TO USER BASED ON THEIR SELECTION IN changeFieldSelection
     # newInstrumentType = models.ForeignKey(InstrumentType, on_delete=models.CASCADE, blank=True, null=True)

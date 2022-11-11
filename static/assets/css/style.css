@@ -170,3 +170,16 @@ a.appButton:hover{
 .center {
   text-align: center;
 }
+
+
+/*  */
+/* Datatables stuff */
+/*  */
+
+label{
+  color: lightgray;
+}
+
+.dataTables_info{
+  color: lightgray !important;
+}
