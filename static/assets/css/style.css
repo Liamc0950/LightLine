@@ -156,3 +156,13 @@ a.appButton:hover{
       font-size: calc(.95rem + 1.5vw);
   }
 }
+
+/* This will be under the content - forms almost a dropshadow */
+.modal-dialog{
+  background-color: rgb(42, 46, 51);
+}
+
+.modal-content{
+  background-color: rgb(42, 46, 51);
+  padding: 1rem;
+}

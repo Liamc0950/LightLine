@@ -6,13 +6,16 @@ from django.forms.widgets import HiddenInput
 from django import forms
 from .models import *
 
-class CueForm(forms.ModelForm):
+from bootstrap_modal_forms.forms import BSModalModelForm
+
+
+class CueForm(BSModalModelForm):
     class Meta:
         model = Cue
         exclude = ['lastUpdate']
         widgets = {'cueList': forms.HiddenInput()}
 
-class HeaderForm(forms.ModelForm):
+class HeaderForm(BSModalModelForm):
     class Meta:
         model = Header
         exclude = ['lastUpdate']

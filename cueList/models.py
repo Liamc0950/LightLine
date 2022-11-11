@@ -25,12 +25,12 @@ class CueList(models.Model):
 
 
 class CueManager(models.Manager):
-    def createNext(self, lastCueNum):
+    def createNext(self, lastCueNum, cueList):
 
         increment = 2
 
-        cue = self.create(eosCueNumber= lastCueNum + increment)
-        # do something with the book
+        cue = self.create(eosCueNumber= lastCueNum + increment, cueList=cueList)
+
         return cue
 
 

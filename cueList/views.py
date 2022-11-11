@@ -78,9 +78,21 @@ def cueListDeleteDashboard(request, cueListID):
 
 #Create Cue - creates cue with no modal, cue number generated from cue num iterator from Cue model
 @login_required
-def cueCreateCueList(request, lastCueNum):
+def cueCreateNextCueList(request, lastCueNum):
+    #try to get the active project, then get all the cues in cueList linked to active project
+    try:
+        activeProject = Project.objects.get(projectCreator=request.user.profile, active=True)
+    #if no active project, set to none
+    except:
+        activeProject = Project.objects.none()
 
-    Cue.objects.createNext(lastCueNum)
+    #try to get the active cueList
+    try:
+        activeCueList = CueList.objects.get(project = activeProject, active = True)
+    except:
+        activeCueList = CueList.objects.none()
+
+    Cue.objects.createNext(lastCueNum, activeCueList)
     
     return HttpResponseRedirect('/cueList')
 
@@ -152,7 +164,7 @@ def switchActiveCueList(request):
 
 # #CueList Add Cue
 class CueCreateView(BSModalCreateView):
-    template_name = 'lightline/createCue.html'
+    template_name = 'cueList/createCue.html'
     form_class = CueForm
     success_message = 'Success: Cue was created.'
     success_url = reverse_lazy('cueList')
@@ -183,10 +195,10 @@ class HeaderCreateView(BSModalCreateView):
 
 # #CueList Create CueList (MODAL VIEW)
 class CueCreateView(BSModalCreateView):
-    template_name = 'lightlineapp/createCueList.html'
+    template_name = 'cueList/createCue.html'
     form_class = CueForm
     success_message = 'Success: Cue was created.'
-    success_url = reverse_lazy('cueList')
+    success_url = reverse_lazy('cueList:cueList')
 
     def get_initial(self, *args, **kwargs):
         initial = super(CueCreateView, self).get_initial(**kwargs)
