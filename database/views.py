@@ -44,8 +44,8 @@ def databaseView(request):
 
 #IMPORT CSV FROM LIGHTWRIGHT
 def importLWCSV(request):
-    activeProject = Project.objects.get(lightingDesigner= request.user.profile, active=True)
-    csv = open('lightlineapp/testLWExport.csv', 'r')  
+    activeProject = Project.objects.get(projectCreator= request.user.profile, active=True)
+    csv = open('database/testLWExport.csv', 'r')  
 
     Instrument.addInstrumentsFromCSV(csv, activeProject)
 
