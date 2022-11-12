@@ -69,8 +69,9 @@ class Note(models.Model):
 
 
 class WorkNote(Note):
-    noteText = models.CharField(max_length=256)
-    channelList = models.CharField(max_length=32)
+    noteText = models.CharField(max_length=256, blank=True)
+    channelList = models.CharField(max_length=32, blank=True)
+    cue = models.CharField(max_length=32, blank=True)
     changeFieldSelection = models.CharField(max_length=16, choices=FIELD_CHOICES, default='INSTRUMENT_TYPE')
     #THESE FIELD WILL BE MADE AVAILABLE TO USER BASED ON THEIR SELECTION IN changeFieldSelection
     # newInstrumentType = models.ForeignKey(InstrumentType, on_delete=models.CASCADE, blank=True, null=True)

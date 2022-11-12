@@ -30,12 +30,21 @@ def notes(request):
     # #get all activeProject cue Lists
     # projectCueLists = CueList.objects.filter(project = activeProject)
 
+    #get assignees
+    pe = Assignee.objects.get(id=1)
+    designer = Assignee.objects.get(id=2)
+    programmer = Assignee.objects.get(id=3)
+
+
     # #get all projects assigned to user - for sidebar
     projects = Project.objects.filter(projectCreator=request.user.profile)
 
     # #get all activeProject workNotes
     activeWorkNotes = WorkNote.objects.filter(project=activeProject, completed = False)
-    completeWorkNotes = WorkNote.objects.filter(project=activeProject, completed = True)
+    completedWorkNotes = WorkNote.objects.filter(project=activeProject, completed = True)
+    peWorkNotes = WorkNote.objects.filter(project=activeProject, assignedTo = pe, completed = False)
+    designerWorkNotes = WorkNote.objects.filter(project=activeProject, assignedTo = designer, completed = False)
+    programmerWorkNotes = WorkNote.objects.filter(project=activeProject, assignedTo = programmer, completed = False)
 
     #get all assignee options
     assignees = Assignee.objects.filter()
@@ -49,7 +58,10 @@ def notes(request):
         'projectCueLists' : None,
         'activeCueList' : None,
         'activeWorkNotes' : activeWorkNotes,
-        'completeWorkNotes' : completeWorkNotes,
+        'completedWorkNotes' : completedWorkNotes,
+        'peWorkNotes' : peWorkNotes,
+        'designerWorkNotes' : designerWorkNotes,
+        'programmerWorkNotes' : programmerWorkNotes,
         'assignees' : assignees,
     }
 
@@ -84,6 +96,10 @@ def updateWorkNote(request):
 
     if type == "channelList":
         workNote.channelList = value
+
+    if type == "cue":
+        workNote.cue = value
+
 
     if type == "createdBy":
         workNote.createdBy = value

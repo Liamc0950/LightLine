@@ -4,35 +4,143 @@
 
 {% load static %}
 
-<h2>ASSIGNMENTS</h2>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+</head>
+  
+
+<h4>ASSIGNMENTS</h4>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="work-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Production Electrician</button>
+      <button class="nav-link active" id="pe-tab" data-bs-toggle="tab" data-bs-target="#pe" type="button" role="tab" aria-controls="pe" aria-selected="true">Production Electrician</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="focus-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Designer</button>
+      <button class="nav-link" id="designer-tab" data-bs-toggle="tab" data-bs-target="#designer" type="button" role="tab" aria-controls="designer" aria-selected="false">Designer</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="programming-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Programmer</button>
+      <button class="nav-link" id="programmer-tab" data-bs-toggle="tab" data-bs-target="#programmer" type="button" role="tab" aria-controls="programmer" aria-selected="false">Programmer</button>
     </li>
 </ul>
 
 <div class="tab-content" id="workNotesTab">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="work-tab">
+    <div class="tab-pane fade show active" id="pe" role="tabpanel" aria-labelledby="pe-tab">
+    {% if peWorkNotes %}
+    <table class="table table-dark table-hover " id="pe-assignments">
+        <thead>
+        <tr class="tableHead">
+            <th>NOTE</th>
+            <th>CHANNEL(s)</th>
+            <th>CUE</th>
+            <th>CREATED BY</th>
+            <th>ASSIGNED TO</th>
+            <th>PRIORITY</th>
+            <th>GROUP?</th>
+            <th></th>
+    </tr>
+        </thead>
+        {% if peWorkNotes %}
+            {% for workNote in peWorkNotes %}
+                <tr class="workNoteRow">
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                    <!-- DELETE BUTTON -->
+                    <td>
+                        <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
+                    </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+    {% endif %}
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="focus-tab">
-    </div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="programming-tab">
+        <div class="tab-pane fade" id="designer" role="tabpanel" aria-labelledby="designer-tab">
+        {% if designerWorkNotes %}
+        <table class="table table-dark table-hover " id="designer-assignments">
+            <thead>
+            <tr class="tableHead">
+                <th>NOTE</th>
+                <th>CHANNEL(s)</th>
+                <th>CUE</th>
+                <th>CREATED BY</th>
+                <th>ASSIGNED TO</th>
+                <th>PRIORITY</th>
+                <th>GROUP?</th>
+                <th></th>
+        </tr>
+            </thead>
+            {% if designerWorkNotes %}
+                {% for workNote in designerWorkNotes %}
+                    <tr class="workNoteRow">
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                        <!-- DELETE BUTTON -->
+                        <td>
+                            <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
+                        </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+        {% endif %}
+        </div>
+    <div class="tab-pane fade" id="programmer" role="tabpanel" aria-labelledby="programmer-tab">
+        {% if programmerWorkNotes %}
+        <table class="table table-dark table-hover " id="programmer-assignments">
+            <thead>
+            <tr class="tableHead">
+                <th>NOTE</th>
+                <th>CHANNEL(s)</th>
+                <th>CUE</th>
+                <th>CREATED BY</th>
+                <th>ASSIGNED TO</th>
+                <th>PRIORITY</th>
+                <th>GROUP?</th>
+                <th></th>
+        </tr>
+            </thead>
+            {% if programmerWorkNotes %}
+                {% for workNote in programmerWorkNotes %}
+                    <tr class="workNoteRow">
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                        <!-- DELETE BUTTON -->
+                        <td>
+                            <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
+                        </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+        {% endif %}
     </div>
 </div>
 
-<h2>NOTES</h2>
+<h4>NOTES</h4>
     <a href="createWorkNote" class="authButton">ADD NOTE</a>
         <table class="table table-dark table-hover " id="work-notes">
             <thead>
             <tr class="tableHead">
-                <th>WORK NOTE</th>
-                <th>CHANNELS</th>
+                <th>NOTE</th>
+                <th>CHANNEL(s)</th>
+                <th>CUE</th>
                 <th>CREATED BY</th>
                 <th>ASSIGNED TO</th>
                 <th>PRIORITY</th>
@@ -45,6 +153,7 @@
                     <tr class="workNoteRow">
                         <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
                         <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                         <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
                         <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
                         <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
@@ -58,13 +167,14 @@
             {% endif %}
         </table>
 
-<h2>FOR THE GROUP</h2>
+<h4>FOR THE GROUP</h4>
 {% if activeWorkNotes %}
     <table class="table table-dark table-hover " id="work-notes">
         <thead>
         <tr class="tableHead">
-            <th>WORK NOTE</th>
-            <th>CHANNELS</th>
+            <th>NOTE</th>
+            <th>CHANNEL(s)</th>
+            <th>CUE</th>
             <th>CREATED BY</th>
             <th>ASSIGNED TO</th>
             <th>PRIORITY</th>
@@ -74,10 +184,11 @@
         </thead>
         {% if activeWorkNotes %}
             {% for workNote in activeWorkNotes %}
-                {% if activeWorkNotes.forGroup %}
+                {% if workNote.forGroup %}
                 <tr class="workNoteRow">
                     <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
                     <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
                     <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
                     <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
@@ -86,19 +197,22 @@
                     <td>
                         <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
                     </td>
-            </tr>
+                </tr>
                 {% endif %}
             {% endfor %}
         {% endif %}
     </table>
 {% endif %}
-<h2>COMPLETED NOTES</h2>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#demo" aria-expanded="false" aria-controls="demo"> COMPLETED NOTES</button>
+
+<div id="demo" class="collapse">  
 {% if completedWorkNotes %}
     <table class="table table-dark table-hover " id="work-notes">
         <thead>
         <tr class="tableHead">
-            <th>WORK NOTE</th>
-            <th>CHANNELS</th>
+            <th>NOTE</th>
+            <th>CHANNEL(s)</th>
+            <th>CUE</th>
             <th>CREATED BY</th>
             <th>ASSIGNED TO</th>
             <th>PRIORITY</th>
@@ -106,21 +220,21 @@
         </tr>
         </thead>
         {% if completedWorkNotes %}
-            {% for workNote in activeWorkNotes %}
-                {% if activeWorkNotes.forGroup %}
+            {% for workNote in completedWorkNotes %}
                 <tr class="workNoteRow">
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
                     <td data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
                 </tr>
-                {% endif %}
             {% endfor %}
         {% endif %}
     </table>
 {% endif %}
+</div>
 
 {% endblock content %}
 
