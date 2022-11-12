@@ -16,6 +16,8 @@ from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
 
+from cueList.models import CueList
+
 
 @login_required
 def index(request):
@@ -55,7 +57,10 @@ class ProjectCreateView(CreateView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         response = super().form_valid(form) # save newly created Project object
+        #activate project
         self.object.activate(self.request.user.profile)
+        #create a main cue list
+        CueList.object.create(listName="Main", cueListNumber=1,project=self.object, active = True)
         return response
 
 

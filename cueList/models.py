@@ -3,7 +3,6 @@ from django.db import models
 from projects.models import Project
 
 
-
 class CueList(models.Model):
     id = models.AutoField(primary_key=True)
     listName = models.CharField(max_length = 64)
