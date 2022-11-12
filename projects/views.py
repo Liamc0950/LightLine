@@ -60,7 +60,7 @@ class ProjectCreateView(CreateView):
         #activate project
         self.object.activate(self.request.user.profile)
         #create a main cue list
-        CueList.object.create(listName="Main", cueListNumber=1,project=self.object, active = True)
+        CueList.objects.create(listName="Main", cueListNumber=1,project=self.object, active = True)
         return response
 
 
