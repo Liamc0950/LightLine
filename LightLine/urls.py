@@ -28,4 +28,5 @@ urlpatterns = [
     path('dashboard/', include("dashboard.urls")),
     path('projects/', include("projects.urls", namespace='projects')),
     path('cueList/', include("cueList.urls", namespace='cueList')),
+    path('database/', include("database.urls", namespace='database')),
 ]

@@ -4,13 +4,6 @@
 
 {% load static %}
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-</head>
-  
 
 <h4>ASSIGNMENTS</h4>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -44,13 +37,13 @@
         {% if peWorkNotes %}
             {% for workNote in peWorkNotes %}
                 <tr class="workNoteRow">
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                    <td data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
                     <!-- DELETE BUTTON -->
                     <td>
                         <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
@@ -79,13 +72,13 @@
             {% if designerWorkNotes %}
                 {% for workNote in designerWorkNotes %}
                     <tr class="workNoteRow">
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                         <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                        <td data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
                         <!-- DELETE BUTTON -->
                         <td>
                             <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
@@ -114,13 +107,13 @@
             {% if programmerWorkNotes %}
                 {% for workNote in programmerWorkNotes %}
                     <tr class="workNoteRow">
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                         <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                        <td data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                        <td data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
                         <!-- DELETE BUTTON -->
                         <td>
                             <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
@@ -145,7 +138,7 @@
                 <th>ASSIGNED TO</th>
                 <th>PRIORITY</th>
                 <th>GROUP?</th>
-                <th></th>
+                <th>DONE</th>
             </tr>
             </thead>
             {% if activeWorkNotes %}
@@ -157,8 +150,8 @@
                         <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
                         <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
                         <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
-                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
-                        <!-- DELETE BUTTON -->
+                        <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{{workNote.forGroup}}</td>
+                        <!-- DONE BUTTON -->
                         <td>
                             <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>
                         </td>
@@ -186,13 +179,13 @@
             {% for workNote in activeWorkNotes %}
                 {% if workNote.forGroup %}
                 <tr class="workNoteRow">
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="noteText" scope="row" data-model="workNote">{{workNote.noteText}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="channelList" data-model="workNote"> {{workNote.channelList}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="cue" data-model="workNote"> {{workNote.cue}}</td>
                     <td data-id="{{ workNote.id }}" data-input="text" data-type="createdBy" data-model="workNote">{{workNote.createdBy.getName}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
-                    <td class="editable" data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
+                    <td data-id="{{ workNote.id }}" data-input="choice" data-type="assignedTo" data-model="workNote">{{workNote.assignedTo}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="priority" data-model="workNote">{{workNote.priority}}</td>
+                    <td data-id="{{ workNote.id }}" data-input="text" data-type="forGroup" data-model="workNote">{% if workNote.forGroup %} <input type="checkbox" checked> {% else %}  <input type="checkbox">  {% endif %}</td>
                     <!-- DELETE BUTTON -->
                     <td>
                         <a href="completeNote/{{workNote.id}}" class="btn btn-secondary"><i class="fa fa-check"> </i></a>

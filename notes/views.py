@@ -110,6 +110,15 @@ def updateWorkNote(request):
     if type == "priority":
         workNote.priority = value
 
+    if type == "forGroup":
+        if value == "t" or value == "T" or value == "true" or value == "True":
+            workNote.forGroup = True
+        if value == "f" or value == "F" or value == "false" or value == "False":
+            workNote.forGroup = False
+        else:
+            pass
+
+
     workNote.save()
     return JsonResponse({"success":"Updated Work Note"})
 
