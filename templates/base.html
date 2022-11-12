@@ -1,5 +1,9 @@
 {% load static %}
 
+{% load bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 
 <!DOCTYPE html>
@@ -84,13 +88,7 @@
 
     {% endblock scripts %}
 
-    {% block extrascripts %}{% endblock extrascripts %}
-
-    {% load bootstrap5 %}
-
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    
+    {% block extrascripts %}{% endblock extrascripts %}    
 
   </body>
 
