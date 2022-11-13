@@ -11,9 +11,14 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 
 from .models import *
+from .forms import *
 
 from projects.models import *
 from accounts.models import *
+
+import tempfile
+from django.views.generic.edit import FormView
+
 
 #CSV
 import csv
@@ -42,15 +47,23 @@ def databaseView(request):
 
     return render(request, "database/databaseDatatable.html", context)
 
-#IMPORT CSV FROM LIGHTWRIGHT
-def importLWCSV(request):
-    activeProject = Project.objects.get(projectCreator= request.user.profile, active=True)
-    csv = open('database/testLWExport.csv', 'r')  
+class ImportCSVLWFormView(FormView):
+    form_class = CSVForm
+    template_name = 'database/upload.html'  # Replace with your template.
+    success_url = '/database'  # Replace with your URL or reverse().
 
-    Instrument.addInstrumentsFromCSV(csv, activeProject)
+    def post(self, request, *args, **kwargs):
+        #Get active project
+        activeProject = Project.objects.get(projectCreator= self.request.user.profile, active=True)
 
-    csv.close() 
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        files = request.FILES.getlist('file_field')
+        if form.is_valid():
+            for f in files:
+                Instrument.addInstrumentsFromCSV(f, activeProject)
 
-    return HttpResponseRedirect('/database')
-
-
+            return self.form_valid(form)
+        else:
+            print("INVALID")
+            return self.form_invalid(form)

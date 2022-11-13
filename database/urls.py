@@ -10,6 +10,7 @@ urlpatterns = [
 
     #DATABASE
     path('', views.databaseView, name='database'),
-    path('importLWCSV/', views.importLWCSV, name='importLWCSV'),
+    path('importLWCSV/', views.ImportCSVLWFormView.as_view(), name='importLWCSV'),
+    
 
 ]
