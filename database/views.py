@@ -68,3 +68,11 @@ class ImportCSVLWFormView(FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+#Delete Cue - deletes given cue (designated by parent of delete button)
+@login_required
+def instumentDelete(request, instrumentID):
+    insturment = Instrument.objects.get(id=instrumentID)
+    insturment.delete()
+    return HttpResponseRedirect('/database')
