@@ -36,8 +36,8 @@ class Cable(models.Model):
 class Gobo(models.Model):
     id = models.AutoField(primary_key=True)
     lastUpdate = models.DateTimeField(auto_now=True)
-    goboName = models.CharField(max_length = 32)
-    goboCode = models.CharField(max_length = 16, unique=True)
+    goboName = models.CharField(max_length = 64)
+    goboCode = models.CharField(max_length = 32, unique=True)
     imageUrl = models.CharField(max_length = 128)
 
     def __str__(self):
