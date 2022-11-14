@@ -18,7 +18,7 @@ class Command(BaseCommand):
                 pass
             else:
                 #check if a gobo with the given name already exists
-                if(Gobo.objects.filter(colorName=line[1]).exists()):
+                if(Gobo.objects.filter(goboName=line[1]).exists()):
                     #gobo exists, so do not add another
                     pass
                 else:
@@ -29,10 +29,10 @@ class Command(BaseCommand):
                         gobo.goboName = line[1]
                         gobo.imageUrl = line[2]
                         gobo.save()
-                        self.stdout.write(gobo)
+                        print(gobo)
                     except:
                         raise CommandError('Gobo "%s" could not be uploaded' % line[0])
 
 
         goboCSV.close()
-        self.stdout.write(self.style.SUCCESS('Successfully added Gobos'))
+        print(self.style.SUCCESS('Successfully added Gobos'))
