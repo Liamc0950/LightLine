@@ -143,25 +143,33 @@ class Instrument(models.Model):
 
     #Add Instrument instanced from a csv file exported from LightWright 6
     def addInstrumentsFromCSV(csv, activeProject):
+        #split csv into lines
+        csv = csv.splitlines()
         for line in csv:
-            line =  line.split(',')
+            #decode to bytes-like object
+            line_decoded = line.decode()
+            #split into col elements by comma
+            cols = line_decoded.split(',')
 
-            if len(line[0]) == 1 or line[0] == "Purpose":
+            #check fro empty line or header
+            if len(cols[0]) == 1 or cols[0] == "Purpose":
                 pass
+            #else, parse data and create instrument object
             else: 
                 instrument = Instrument()
                 #PROJECT
                 instrument.project = activeProject
                 #PURPOSE
-                instrument.purpose = line[0]
+                instrument.purpose = cols[0]
                 #CHANNEL
-                if line[1] != '':
-                    chan = line[1]
-                    chan = re.search('\(([^)]+)', chan).group(1)
+                if cols[1] != '':
+                    chan = cols[1]
+                    #TODO add back regex
+                    #chan = re.search('\(([^)]+)', chan).group(1)
                     instrument.channel = chan
                 #DIMMER
-                if line[2] != '':
-                    instrument.dimmer = line[2]
+                if cols[2] != '':
+                    instrument.dimmer = cols[2]
                 else:
                     pass
                 #ADDRESS - need to parse out universe
@@ -171,26 +179,26 @@ class Instrument(models.Model):
                 #     pass
                 #POSITION
                 try:
-                    instrument.position = Position.objects.get(positionName = line[4])
+                    instrument.position = Position.objects.get(positionName = cols[4])
                 except:
                     newPosition = Position()
-                    newPosition.positionName = line[4]
+                    newPosition.positionName = cols[4]
                     newPosition.save()
                     instrument.position = newPosition
 
                 #UNIT #
-                if line[4] != '':
-                    instrument.unitNumber = line[5]
+                if cols[4] != '':
+                    instrument.unitNumber = cols[5]
                 else:
                     pass
                 #INSTRUMENT TYPE
                 try:
-                    instrument.instrumentType =  InstrumentType.objects.get(typeName = line[6])
+                    instrument.instrumentType =  InstrumentType.objects.get(typeName = cols[6])
                 except:
                     newType = InstrumentType()
-                    newType.typeName = line[6]
-                    if line[7] != '':
-                        loadInt = int(re.sub("w", " ", line[7]))
+                    newType.typeName = cols[6]
+                    if cols[7] != '':
+                        loadInt = int(re.sub("w", " ", cols[7]))
                         newType.load = loadInt
                     else:
                         pass
@@ -211,7 +219,7 @@ class Instrument(models.Model):
                 #     newAccessory.accessoryName = line[8]
                 #     instrument.accessory = newAccessory
                 #COLOR
-                colorString = line[9]
+                colorString = cols[9]
                 
                 colorSplit = colorString.split(" ")
 
@@ -230,7 +238,7 @@ class Instrument(models.Model):
 
                 #GOBO
 
-                goboString = line[10]
+                goboString = cols[10]
                 
                 #SPLIT THE STRING, WE SHOULD ONLY LOOK AT THE FIRST SET OF CHARACTERS BEFORE A SPACE, IF A SPACE EXISTS
                 goboSplit = goboString.split(" ")

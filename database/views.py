@@ -61,9 +61,10 @@ class ImportCSVLWFormView(FormView):
         files = request.FILES.getlist('file_field')
         if form.is_valid():
             for f in files:
-                Instrument.addInstrumentsFromCSV(f, activeProject)
+                for chunk in f.chunks():
+                    Instrument.addInstrumentsFromCSV(chunk, activeProject)
+
 
             return self.form_valid(form)
         else:
-            print("INVALID")
             return self.form_invalid(form)
