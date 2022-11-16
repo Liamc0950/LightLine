@@ -7,7 +7,7 @@ class CueList(models.Model):
     id = models.AutoField(primary_key=True)
     listName = models.CharField(max_length = 64)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    cueListNumber = models.IntegerField(default=1)
+    cueListNumber = models.FloatField(default=1)
     active = models.BooleanField(default=False)
 
 
@@ -38,8 +38,8 @@ class Cue(models.Model):
     lastUpdate = models.DateTimeField(auto_now=True)
     cueLabel = models.CharField(max_length = 100, default="", blank=True)
     pageNumber = models.IntegerField(default=1)
-    eosCueNumber = models.IntegerField(default=1)
-    cueTime = models.IntegerField(default=5)
+    eosCueNumber = models.FloatField(default=1)
+    cueTime = models.FloatField(default=5)
     cueDescription = models.CharField(max_length = 100, default="", blank=True)
     cueList = models.ForeignKey(CueList, on_delete=models.CASCADE, default=1)
 

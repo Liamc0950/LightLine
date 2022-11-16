@@ -29,4 +29,5 @@ urlpatterns = [
     path('projects/', include("projects.urls", namespace='projects')),
     path('cueList/', include("cueList.urls", namespace='cueList')),
     path('database/', include("database.urls", namespace='database')),
+    path('script/', include("script.urls", namespace='script')),
 ]
