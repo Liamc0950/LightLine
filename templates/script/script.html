@@ -8,7 +8,12 @@
   <h2>SCRIPT</h1>
   <a href="../script/importScript" class="authButton">ADD SCRIPT</a>
 
-  <iframe src="/media/{{ script }}" height="200" width="300"></iframe>
+  <!-- <iframe src="/media/{{ script }}&output=embed" height="200" width="300"></iframe> -->
+
+  <object data="/media/{{ script }}" 
+          width="800" 
+          height="500"> 
+  </object>
 
 {% endif %}
 s

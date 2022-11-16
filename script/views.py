@@ -23,7 +23,7 @@ def scriptView(request):
     projectCueLists = CueList.objects.filter(project=activeProject)
     
     try:
-        script = str(Script.objects.get(project=activeProject).pdf)
+        script = str(Script.objects.get(project=activeProject, active=True).pdf)
     except:
         script = ""
 
@@ -53,9 +53,8 @@ def ScriptUploadView(request):
         if form.is_valid():
             instance = Script(pdf=request.FILES['pdf'])
             instance.project = activeProject
+            instance.activate()
             instance.save()
-
-            #TODO activate script
             return HttpResponseRedirect('/script')
 
     else:
