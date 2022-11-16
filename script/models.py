@@ -13,7 +13,7 @@ class Script(models.Model):
         ordering = ['scriptName']
      
     def __str__(self):
-        return f"{self.scriptName}"
+        return self.scriptName
 
     def activate(self):
         scripts = Script.objects.filter(project=self.project, active=True)
