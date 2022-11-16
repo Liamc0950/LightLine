@@ -20,7 +20,7 @@ urlpatterns = [
     path('deleteCueList/<int:cueListID>', views.cueListDeleteDashboard, name='deleteCueList'),
     #cueList add cue
     path('addCue/', views.CueCreateView.as_view(), name='addCue'),
-    path('addNextCue/<int:lastCueNum>', views.cueCreateNextCueList, name='addNextCue'),
+    path('addNextCue/<int:lastCueID>', views.cueCreateNextCueList, name='addNextCue'),
     #cueList add Header
     path('addHeader/', views.HeaderCreateView.as_view(), name='addHeader'),
     #CueList Print Layout

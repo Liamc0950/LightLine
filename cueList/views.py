@@ -157,9 +157,15 @@ def cueListDeleteDashboard(request, cueListID):
 
 
 #Create Cue - creates cue with no modal, cue number generated from cue num iterator from Cue model
-@login_required
-def cueCreateNextCueList(request, lastCueNum):
-    #try to get the active project, then get all the cues in cueList linked to active project
+def cueCreateNextCueList(request, lastCueID):
+    #Try to get cue with ID of lastCueID
+    try:
+        lastCueNum = Cue.objects.get(id=lastCueID).eosCueNumber
+    #Else, set lastCueNum to 0
+    except:
+        lastCueNum = 0
+
+    #try to get the active project
     try:
         activeProject = Project.objects.get(projectCreator=request.user.profile, active=True)
     #if no active project, set to none

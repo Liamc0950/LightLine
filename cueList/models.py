@@ -18,7 +18,7 @@ class CueList(models.Model):
         cuesInList = Cue.objects.order_by('eosCueNumber').filter(cueList=self)
         try:
             lastCue= cuesInList[len(cuesInList) - 1]
-            return lastCue.eosCueNumber
+            return lastCue.id
         except:
             return 0
 
