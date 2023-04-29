@@ -99,8 +99,8 @@
 
           RenderCues(pdf_container, num);
 
-          // annotationCTX.fillStyle = randomColor();
-          // annotationCTX.fillRect(0, 0, 500, 500);
+          //annotationCTX.fillStyle = randomColor();
+          //annotationCTX.fillRect(0, 0, 500, 500);
 
       });
   };
@@ -173,9 +173,10 @@
     LoadPdfFromUrl('/media/{{ script }}');
   });
 
+  document.getElementById('annotations-' + (pageIndex+1)).addEventListener("mousemove", handleMouseMove(e));
 
-  function mouseMove(e) {
-    var canvas = document.getElementById('pdf-' + pageIndex);
+  function handleMouseMove(e) {
+    var canvas = document.getElementById('annotations-' + pageIndex);
     var ctx = canvas.getContext('2d');
 
     if (drag) {
