@@ -21,6 +21,7 @@ from projects.models import *
 
 
 from .forms import *
+from django.views.generic.edit import FormView
 
 #CSV
 import csv
@@ -182,20 +183,6 @@ def cueCreateNextCueList(request, lastCueID):
     
     return HttpResponseRedirect('/cueList')
 
-#PrintPDF
-# def printPDF(request):
-#     # Create the HttpResponse object with the appropriate PDF headers.
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
-
-#     buffer = BytesIO()
-
-#     report = PDF_Printer(buffer, 'Letter', request)
-#     pdf = report.printTest()
-
-#     response.write(pdf)
-#     return response
-
 def exportEosCSV(request, activeCueListID):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(
@@ -229,7 +216,28 @@ def exportEosCSV(request, activeCueListID):
 
     return response
 
+class ImportEosCSVFormView(FormView):
+    form_class = CSVForm
+    template_name = 'cueList/upload.html'  # Replace with your template.
+    success_url = '/cueList'  # Replace with your URL or reverse().
 
+    def post(self, request, *args, **kwargs):
+        #Get active project
+        activeProject = Project.objects.get(projectCreator= self.request.user.profile, active=True)
+
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        files = request.FILES.getlist('file_field')
+        if form.is_valid():
+            for f in files:
+                for chunk in f.chunks():
+                    Cue.addCuesFromCSV(chunk, activeProject)
+
+
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+        
 def switchActiveCueList(request):
     if request.method == "POST":
         #deactivate other cue lists
@@ -382,3 +390,10 @@ def exportEosCSV(request, activeCueListID):
     writer.writerow(['END_TARGETS'])
 
     return response
+
+
+def skip_last(iterator):
+    prev = next(iterator)
+    for item in iterator:
+        yield prev
+        prev = item
