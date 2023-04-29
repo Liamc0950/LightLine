@@ -27,6 +27,8 @@ urlpatterns = [
     path('printLayout/', views.printLayout, name='printLayout'),
     #CueList Print
     path('print/', views.print, name='print'),
+    #CueList Import Eos CSV
+    path('importEosCSV/', views.ImportEosCSVFormView.as_view(), name='importEosCSV'),
     #CueList Export Eos CSV
     path('exportEosCSV/<int:activeCueListID>', views.exportEosCSV, name='exportEosCSV'),
     #CueList Create CueList

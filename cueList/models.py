@@ -65,7 +65,48 @@ class Cue(models.Model):
             return Header.objects.get(cue=self)
         except:
             return None
-    
+    #Add Cue instanced from a csv file exported from ETC Eos
+    def addCuesFromCSV(csv, activeProject):
+        #split csv into lines
+        csv = csv.splitlines()
+        #create new Cue List
+        cueListLine = csv[2].decode().split(',')
+        cueList = CueList()
+        cueList.listName = cueListLine[6]
+        cueList.project = activeProject
+        cueList.cueListNumber = cueListLine[3]
+        cueList.active = True
+        cueList.save()
+
+        for line in csv:
+            #decode to bytes-like object
+            line_decoded = line.decode()
+            #split into col elements by comma
+            cols = line_decoded.split(',')
+            
+            #bypass last line
+            if cols[0] != "END_TARGETS":
+                #check for headers or part cues
+                if cols[0] == "START_TARGETS" or cols[0] == "TARGET_TYPE" or cols[0] == "15" or cols[5] != "":
+                    pass
+                #else, parse data and create instrument object
+                else: 
+                    cue = Cue()
+                    #LABEL
+                    cue.cueLabel = cols[6]
+                    #CUE NUMBER
+                    cue.eosCueNumber = float(cols[3])
+                    #CUE TIME
+                    if cols[7] != '':
+                        cue.cueTime = float(cols[7])
+                    else:
+                        cue.cueTime = 4.9
+                    #CUE LIST
+                    cue.cueList = cueList
+
+                    #SAVE INSTRUMENT
+                    cue.save()  
+
 
 
 class Header(models.Model):
@@ -77,3 +118,6 @@ class Header(models.Model):
 
     def __str__(self):
         return self.headerTitle
+
+
+

@@ -27,3 +27,6 @@ class CueListCreateForm(forms.ModelForm):
         exclude = ['lastUpdate']
         widgets = {'active' : forms.HiddenInput(), 
                    'project' : forms.HiddenInput(),}
+        
+class CSVForm(forms.Form):
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': False}))

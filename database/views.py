@@ -20,8 +20,6 @@ import tempfile
 from django.views.generic.edit import FormView
 
 
-#CSV
-import csv
 
 @login_required
 #Database feature view
