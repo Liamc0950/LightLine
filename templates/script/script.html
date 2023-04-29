@@ -11,16 +11,15 @@
 
   <h2>SCRIPT</h1>
   <a href="../script/importScript" class="authButton">ADD SCRIPT</a>
+  <button class="authButton" onclick="zoomIn()">ZOOM OUT</button>
+  <button class="authButton"onclick="zoomOut()">ZOOM IN</button>
 
-  <!-- <iframe src="/media/{{ script }}&output=embed" height="200" width="300"></iframe> -->
 
-  <!-- <object data="/media/{{ script }}" 
-          width="800" 
-          height="500"> 
-  </object> -->
 
   <div id="pdf_container"></div>
 
+  <button class="authButton" onclick="lastPage()">LAST</button>
+  <button class="authButton"onclick="nextPage()">NEXT</button>
 
 {% endif %}
 
@@ -33,21 +32,26 @@
   var pdfjsLib = window['pdfjs-dist/build/pdf'];
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';
   var pdfDoc = null;
-  var scale = 1; //Set Scale for zooming PDF.
-  var resScaling = 0.001;
-  var resolution = window.innerWidth * resScaling; //Set Resolution based on window size
+  var resScaling = 0.0005;
+  var zoomScaling = 0.0021;
+  var scale = window.innerHeight * zoomScaling; //Set Scale for zooming PDF.
+  var resolution = window.innerHeight * resScaling; //Set Resolution based on window size
+
+  var pageIndex = 1; //first page index is 1
+  var pageTotal = 0;
 
   function LoadPdfFromUrl(url) {
       //Read PDF from URL.
       pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
           pdfDoc = pdfDoc_;
+          pageTotal = pdfDoc.numPages;
 
           //Reference the Container DIV.
           var pdf_container = document.getElementById("pdf_container");
           pdf_container.style.display = "block";
 
-          //Loop and render all pages.
-          for (var i = 1; i <= pdfDoc.numPages; i++) {
+          //Loop and render all pages. 
+          for (var i = 1; i <= pageTotal; i++) {
               RenderPage(pdf_container, i);
           }
       });
@@ -58,17 +62,30 @@
           var canvas = document.createElement('canvas');
           canvas.id = 'pdf-' + num;
           ctx = canvas.getContext('2d');
-          pdf_container.appendChild(canvas);
+          
+          var wrapper = document.createElement('div');
+          wrapper.className = 'wrapper';
+          var annotationCanvas = document.createElement('canvas');
+          annotationCanvas.id = 'annotations-' + num;
+          annotationCTX = annotationCanvas.getContext('2d');
 
-          //Create and add empty DIV to add SPACE between pages.
-          var spacer = document.createElement("div");
-          spacer.style.height = "20px";
-          pdf_container.appendChild(spacer);
+          pdf_container.appendChild(wrapper);
+          wrapper.appendChild(canvas);
+          wrapper.appendChild(annotationCanvas);
 
           //Set the Canvas dimensions using ViewPort and Scale.
           var viewport = page.getViewport({ scale: scale });
           canvas.height = resolution * viewport.height;
           canvas.width = resolution * viewport.width;
+          annotationCanvas.height = resolution * viewport.height;
+          annotationCanvas.width = resolution * viewport.width;
+
+          //Hide the canvas for now, unless we are on the first page
+          if(num != 1){
+            canvas.hidden=true;
+            annotationCanvas.hidden = true;
+          }
+
 
           //Render the PDF page.
           var renderContext = {
@@ -77,14 +94,106 @@
               transform: [resolution, 0, 0, resolution, 0, 0]
           };
 
+
           page.render(renderContext);
+
+          RenderCues(pdf_container, num);
+
+          // annotationCTX.fillStyle = randomColor();
+          // annotationCTX.fillRect(0, 0, 500, 500);
+
       });
   };
+  function randomColor(){ 
+  return('#'+Math.floor(Math.random()*16777215).toString(16));
+  }
+
+  function RenderCues(pdf_container, num){
+    var canvas = document.getElementById('annotations-' + num);
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+          ctx.moveTo(20, 100);
+          ctx.lineTo(400, 100);
+          ctx.stroke();
+    ctx.font = '18px serif';
+    ctx.fillText('Hello world' + num, 420, 100);
+
+  }
+
+  //advance to the next page, by hiding the current page canvas and un-hiding the next
+  function nextPage(){
+    if((pageIndex+1) <= pageTotal){
+      pageIndex++; //increment to next page
+      //get next page and set its hidden attribute to false
+      var canvas = document.getElementById('pdf-' + pageIndex);
+      var annotationCanvas = document.getElementById('annotations-' + pageIndex);
+      canvas.hidden = false;
+      annotationCanvas.hidden = false;
+
+      //get last page and set its hidden attribute to true
+      var lastCanvas = document.getElementById('pdf-' + (pageIndex-1));
+      var lastAnnotationCanvas = document.getElementById('annotations-' + (pageIndex-1));
+      lastCanvas.hidden = true;
+      lastAnnotationCanvas.hidden = true;
+
+    }
+    else{
+    }
+    
+  }
+  //return to the last page, by hiding the current page canvas and un-hiding the last
+  function lastPage(){
+    if((pageIndex -1) >= 1){
+      pageIndex--; //decrement to last page
+      //get last page and set its hidden attribute to false
+      var canvas = document.getElementById('pdf-' + pageIndex);
+      var annotationCanvas = document.getElementById('annotations-' + pageIndex);
+      canvas.hidden = false;
+      annotationCanvas.hidden = false;
+      //get former page and set its hidden attribute to true
+      var lastCanvas = document.getElementById('pdf-' + (pageIndex+1));
+      var lastAnnotationCanvas = document.getElementById('annotations-' + (pageIndex+1));
+      lastCanvas.hidden = true;
+      lastAnnotationCanvas.hidden = true;
+    }
+    else{
+    }
+    
+  }
+  
+  function zoomIn(){
+    resolution++;
+  }
+  function zoomOut(){
+    resolution--;
+  }
 
   $(document).ready(function() {
     //load pdf
     LoadPdfFromUrl('/media/{{ script }}');
   });
+
+
+  function mouseMove(e) {
+    var canvas = document.getElementById('pdf-' + pageIndex);
+    var ctx = canvas.getContext('2d');
+
+    if (drag) {
+        ctx.putImageData(pdfPages[pageNum], 0, 0);
+        ctx.clearRect(rect.startX, rect.startY, rect.w, rect.h);
+        rect.w = ((e.pageX - x) - this.offsetLeft) - rect.startX;
+        rect.h = ((e.pageY - y) - this.offsetTop) - rect.startY;      
+        ctx.strokeStyle = color;
+        ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
+        Object.assign(data, {
+            x: rect.startX,
+            y: rect.startY,
+            w: rect.w,
+            h: rect.h
+        })
+        console.log(data);
+    }
+}
 
   // $( window ).resize(function() {
   //   //clear pdf

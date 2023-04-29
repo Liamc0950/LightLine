@@ -1,6 +1,7 @@
 from django.db import models
 
 from projects.models import Project
+from cueList.models import Cue
 
 class Script(models.Model):
     id = models.AutoField(primary_key=True)
@@ -21,3 +22,20 @@ class Script(models.Model):
             script.active = False
         self.active = True
         self.save()
+
+class Annotation(models.Model):
+    #reference fields
+    id = models.AutoField(primary_key=True)
+    script = models.ForeignKey(Script, on_delete=models.CASCADE)
+    page = models.IntegerField(default=1)
+
+    #position on canvas
+    xPos = models.FloatField(default=0)
+    yPos = models.FloatField(default=0)
+
+    class Meta:
+        abstract = True
+
+class CueAnnotation(Annotation):
+    cue = models.ForeignKey(Cue, on_delete=models.CASCADE)
+    note = models.CharField(max_length=256, blank=True)
