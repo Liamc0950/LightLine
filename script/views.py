@@ -15,10 +15,7 @@ def scriptView(request):
 
     # Get projects assigned to user
     projects = Project.objects.filter(projectCreator=request.user.profile)
-    try:
-        activeProject = Project.objects.get(active=True)
-    except:
-        activeProject = None
+    activeProject = Project.objects.get(active=True, projectCreator=request.user.profile)
 
     projectCueLists = CueList.objects.filter(project=activeProject)
     
@@ -42,10 +39,8 @@ def scriptView(request):
 @login_required
 def ScriptUploadView(request):
 
-    try:
-        activeProject = Project.objects.get(active=True)
-    except:
-        activeProject = None
+    # Get active project
+    activeProject = Project.objects.get(active=True, projectCreator=request.user.profile)
 
 
     if request.method == 'POST':
