@@ -202,8 +202,16 @@ class Instrument(models.Model):
                     newType.typeName = cols[6]
 
                     #extract float from wattage by removing "w"s
-                    if cols[7] != '':
-                        loadFloat = float(re.sub("w", " ", cols[7]))
+                    loadString = cols[7]
+                    if loadString != '':
+                        #handle loads written in kW format
+                        if "kW" in loadString:
+                            loadFloat = float(re.sub("kW", " ", loadString)) * 1000
+                        #if not in kW format, remove w and convert to float
+                        else:
+                            loadCleaned = re.sub("w", " ", loadCleaned)
+                            loadFloat = float(loadCleaned)
+                        #set load of new type to parsed wattage
                         newType.load = loadFloat
                     else:
                         pass
@@ -211,11 +219,6 @@ class Instrument(models.Model):
                     newType.save()
                     instrument.instrumentType = newType
 
-                #LOAD
-                # if line[7] != '':
-                #     instrument.instrumentType.load = line[7]
-                # else:
-                #     pass
                 #ACCESSORY
                 # if Accessory.objects.get(accessoryName = line[8]):
                 #     instrument.position = Position.objects.get(accessoryName = line[8])
