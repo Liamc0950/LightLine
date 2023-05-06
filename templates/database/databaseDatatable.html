@@ -41,8 +41,12 @@
                 <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="instrumentType" scope="row" data-model="database">{{instrument.instrumentType}}</td>
                 <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="position" data-model="database"> {{instrument.position}}</td>
                 <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="unitNumber" data-model="database">{{instrument.unitNumber}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="load" data-model="database">{{instrument.instrumentType.load}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="accessory" data-model="database">{{instrument.accessory}}</td>
+                {% if instrument.instrumentType.load %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="load" data-model="database">{{instrument.instrumentType.load|floatformat}}W</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="load" data-model="database"></td>
+                {% endif %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="accessory" data-model="database">{{instrument.accessory}}</td>
                 <td data-id="{{ instrument.id }}" data-input="choice" data-type="color" data-model="Color">{{color}}
                 {% for color in instrument.getColors %}
                     <div class="editable" data-id="{{ instrument.id }}" data-input="choice" data-type="color" data-model="Color">{{color}}
