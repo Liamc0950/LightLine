@@ -1,0 +1,357 @@
+COLOR CODE,COLOR NAME,HEX VALUE
+L002,Rose Pink, FF78DC
+L003,Lavender Tint, FAF0FA
+L004,Medium Bastard Amber, FFC8B4
+L007,Pale Yellow, FAFAD2
+L008,Dark Salmon, FC9B80
+L009,Pale Amber Gold, FCD7B3
+L010,Medium Yellow, FFFF00
+L013,Straw Tint, FCD89B
+L015,Deep Straw, FFCD00
+L017,Surprise Peach, E68C64
+L019,Fire, FF4600
+L020,Medium Amber, FFBE55
+L021,Gold Amber, FF8C32
+L022,Dark Amber, FF6900
+L024,Scarlet, FF5A64
+L025,Sunset Red, FF6E46
+L026,Bright Red, E6003C
+L027,Medium Red, C8003C
+L029,Plasa Red, E1003C
+L035,Light Pink, FFC8D2
+L036,Medium Pink, FFA0B9
+L046,Dark Magenta, DC005A
+L048,Rose Purple, E66EAF
+L049,Medium Purple, BE0091
+L052,Light Lavender, E6AAFA
+L053,Paler Lavender, E6E6FA
+L058,Lavender, B46EF0
+L061,Mist Blue, DCF5FF
+L063,Pale Blue, D2F5FF
+L068,Sky Blue, 46B4F0
+L071,Tokyo Blue, 0000B4
+L075,Evening Blue, 64A0F0
+L079,Just Blue, 3C8CD2
+L085,Deeper Blue, 006EB9
+L088,Lime Green, DCFF64
+L089,Moss Green, 5ADC5A
+L090,Dark Yellow Green, 00BE00
+L100,Spring Yellow, F5FF00
+L101,Yellow, FFF500
+L102,Light Amber, FFDC5F
+L103,Straw, FCEACC
+L104,Deep Amber, FFDC00
+L105,Orange, FFA000
+L106,Primary Red, F00032
+L107,Light Rose, FFA5AF
+L108,English Rose, FCBEA9
+L109,Light Salmon, FFB2AF
+L110,Middle Rose, FFB4C8
+L111,Dark Pink, FF8CBE
+L113,Magenta, FF0064
+L115,Peacock Blue, 00EBC8
+L116,Medium Blue-Green, 00C8B9
+L117,Steel Blue, B4FAF5
+L118,Light Blue, 00E1EB
+L119,Dark Blue, 0078C8
+L120,Deep Blue, 005FBE
+L121,LEE Green, B4FF64
+L122,Fern Green, 78FA6E
+L124,Dark Green, 00DC78
+L126,Mauve, BE009B
+L127,Smokey Pink, E16273
+L128,Bright Pink, FF50B4
+L130,Clear, FFFFFF
+L131,Marine Blue, 64FAD2
+L132,Medium Blue, 00A0DC
+L134,Golden Amber, FAA873
+L135,Deep Golden Amber, FF5F00
+L136,Pale Lavender, F0BEE6
+L137,Special Lavender, C8B4E6
+L138,Pale Green, DCFFA0
+L139,Primary Green, 4BC300
+L140,Summer Blue, 87F0EB
+L141,Bright Blue, 00D2E6
+L142,Pale Violet, AAAAF0
+L143,Pale Navy Blue, 64BED2
+L144,No Colour Blue, 5AE1E6
+L147,Apricot, FCB98C
+L148,Bright Rose, FF507D
+L151,Gold Tint, FFCDC3
+L152,Pale Gold, FFD2C1
+L153,Pale Salmon, FFC8C8
+L154,Pale Rose, FFD5CF
+L156,Chocolate, E1B48C
+L157,Pink, FF92A3
+L158,Deep Orange, FF8700
+L159,No Colour Straw, FFFAEB
+L161,Slate Blue, 7DD2F5
+L162,Bastard Amber, FCDED8
+L164,Flame Red, FF3200
+L165,Daylight Blue, 5AC8EB
+L169,Lilac Tint, FADCF0
+L170,Deep Lavender, E6AADC
+L172,Lagoon Blue, 00DCDC
+L174,Dark Steel Blue, AFE1FA
+L176,Loving Amber, FFAAA0
+L179,Chrome Orange, FFBE00
+L180,Dark Lavender, A064E6
+L181,Congo Blue, 5000AA
+L182,Light Red, F50000
+L183,Moonlight Blue, 00D7E3
+L192,Flesh Pink, FF8CB4
+L194,Surprise Pink, BE8CF0
+L195,Zenith Blue, 006ED2
+L196,True Blue, 78D2E6
+L197,Alice Blue, 82AAE6
+L198,Palace Blue, 6478C8
+L199,Regal Blue, 6464E6
+L200,Double C.T. Blue, 91BEF5
+L201,Full C.T. Blue, C3E1FA
+L202,Half C.T. Blue, D7F0FF
+L203,Quarter C.T. Blue, EBFCFF
+L204,Full C.T. Orange, FAC387
+L205,Half C.T. Orange, FCD9B1
+L206,Quarter C.T. Orange, FCEAD6
+L207,Full C.T. Orange + .3ND, F0B46B
+L208,Full C.T. Orange + .6ND, E6A550
+L212,L.C.T.Yellow (Y1), FFFAD7
+L213,White Flame Green, E6FCDC
+L218,Eighth C.T. Blue, F5FFFF
+L219,LEE Fluorescent Green, 9BDCAF
+L223,Eighth C.T. Orange, FFF3E8
+L230,Super Correction L.C.T. Yellow, DCBE8C
+L232,Super Correction W.F. Green, EDBE83
+L236,H.M.I. (to Tungsten), FAC795
+L237,C.I.D. (to Tungsten), FCB292
+L238,C.S.I. (to Tungsten), F5B9AA
+L241,LEE Fluorescent 5700 Kelvin, AADCC3
+L242,LEE Fluorescent 4300 Kelvin, B9E6B9
+L243,LEE Fluorescent 3600 Kelvin, CDF5AF
+L244,LEE Plus Green, E6FABE
+L245,Half Plus Green, F0FCD2
+L246,Quarter Plus Green, F5FFE6
+L247,LEE Minus Green, FAC3D7
+L248,Half Minus Green, FFE2E4
+L249,Quarter Minus Green, FFECF0
+L278,Eighth Plus Green, F3FFF3
+L279,Eighth Minus Green, FFF3F7
+L281,Three Quarter C.T. Blue, CDE6FA
+L283,One and a Half C.T. Blue, AFD9F5
+L285,Three Quarter C.T. Orange, FCCD94
+L287,Double C.T. Orange, FFA055
+L322,Soft Green, 41F5BE
+L323,Jade, 00E1AA
+L327,Forest Green, 008C50
+L328,Follies Pink, FF64C8
+L332,Special Rose Pink, FF3787
+L343,Special Medium Lavender, 8C00D2
+L345,Fuchsia Pink, CD6ED7
+L352,Glacier Blue, 5AC8E1
+L353,Lighter Blue, 61E8E3
+L354,Special Steel Blue, 00F0D7
+L363,Special Medium Blue, 006EC3
+L366,Cornflower, AAD2F0
+L441,Full C.T. Straw, FAC084
+L442,Half C.T. Straw, FCDCAD
+L443,Quarter C.T. Straw, FCEFDB
+L444,Eighth C.T. Straw, FAF3E8
+L500,Double New Colour Blue, B4D2FF
+L501,New Colour Blue (Robertson Blue), D7EBFA
+L502,Half New Colour Blue, E1F0FF
+L503,Quarter New Colour Blue, F4FAFF
+L504,Waterfront Green, D2F5DC
+L505,Sally Green, E3FF5A
+L506,Marlene, FFDACE
+L507,Madge, F85000
+L508,Midnight Maya, 5A46C3
+L525,Argent Blue, 8EB4FA
+L550,ALD Gold, e3ca3c
+L600,– Arctic White, 98a8aa
+L601,– Silver, 90a0a0
+L602,– Platinum, a5a5aa
+L603,– Moonlight White, c8c8cd
+L642,Half Mustard Yellow, 968200
+L650,Industry Sodium, C8A862
+L651,HI Sodium, FF9B5F
+L652,Urban Sodium, FF8246
+L653,LO Sodium, 965500
+L700,Perfect Lavender, 7D00CD
+L702,Special Pale Lavender, E6D2F0
+L703,Cold Lavender, D282DC
+L704,Lily, F0AAFA
+L706,King Fals Lavender, 6E46C8
+L707,Ultimate Violet, 6400B4
+L708,Cool Lavender, DCEBFA
+L709,Electric Lilac, C8C8FA
+L710,Spir Special Blue, 8CA0F0
+L711,Cold Blue, AABEDC
+L712,Bedford Blue, A0BEF0
+L713,J.Winter Blue, 003CA0
+L714,Elysian Blue, 5A91D2
+L715,Cabana Blue, 3C6EDC
+L716,Mikkel Blue, 0064D2
+L719,Colour Wash Blue, 9BC3F0
+L721,Berry Blue, 0082E6
+L722,Bray Blue, 008CD2
+L723,Virgin Blue, 5082DC
+L724,Ocean Blue, 69E1EB
+L725,Old Steel Blue, BEF2F3
+L727,QFD Blue, 00A5B4
+L728,Steel Green, C8EBD2
+L729,Scuba Blue, 00AFAA
+L730,Liberty Green, DCFFE6
+L731,Dirty Ice, E1FAD7
+L733,Damp Squib, EBF7CF
+L735,Velvet Green, 00BE78
+L736,Twickenham Green, 00AA00
+L738,JAS Green, AAFF00
+L740,Aurora Borealis Green, 5A6E00
+L741,Mustard Yellow, 826400
+L742,Bram Brown, E19B50
+L744,Dirty White, F8C882
+L746,Brown, 6E3C00
+L747,Easy White, F5B99F
+L748,Seedy Pink, E96785
+L763,Wheat, FCF0D2
+L764,Sun Colour Straw, FCE6B4
+L765,LEE Yellow, FFE591
+L767,Oklahoma Yellow, FFE600
+L768,Egg Yolk Yellow, FFC600
+L770,Burnt Yellow, FFB400
+L773,Cardbox Amber, FCC5B2
+L776,Nectarine, FCBE9B
+L777,Rust, F58200
+L778,Millennium Gold, FF7600
+L779,Bastard Pink, FC9885
+L780,AS Golden Amber, FF6F00
+L787,Marius Red, B9003C
+L789,Blood Red, AA3C32
+L790,Moroccan Pink, FFB4A5
+L793,Vanity Fair, FF3CA0
+L794,Pretty n Pink, FFAFDC
+L795,Magical Magenta, FA46C8
+L797,Deep Purple, AF0096
+L798,Chrysalis Pink, A000BE
+L799,Special KH Lavender, 3C00B4
+L200,Double C.T. Blue, 91BEF5
+L201,Full C.T. Blue, C3E1FA
+L202,Half C.T. Blue, D7F0FF
+L203,Quarter C.T. Blue, EBFCFF
+L204,Full C.T. Orange, FAC387
+L205,Half C.T. Orange, FCD9B1
+L206,Quarter C.T. Orange, FCEAD6
+L207,Full C.T. Orange + .3ND, F0B46B
+L208,Full C.T. Orange + .6ND, E6A550
+L209,0.3ND, C8C8C8
+L210,0.6ND, A5A5A5
+L211,0.9ND, 828282
+L212,L.C.T.Yellow (Y1), FFFAD7
+L213,White Flame Green, E6FCDC
+L218,Eighth C.T. Blue, F5FFFF
+L219,LEE Fluorescent Green, 9BDCAF
+L223,Eighth C.T. Orange, FFF3E8
+L226,LEE U.V., FFFFFA
+L230,Super Correction L.C.T. Yellow, DCBE8C
+L232,Super Correction W.F. Green, EDBE83
+L236,H.M.I. (to Tungsten), FAC795
+L237,C.I.D. (to Tungsten), FCB292
+L238,C.S.I. (to Tungsten), F5B9AA
+L239,Polariser, CDCDCD
+L241,LEE Fluorescent 5700 Kelvin, AADCC3
+L242,LEE Fluorescent 4300 Kelvin, B9E6B9
+L243,LEE Fluorescent 3600 Kelvin, CDF5AF
+L244,LEE Plus Green, E6FABE
+L245,Half Plus Green, F0FCD2
+L246,Quarter Plus Green, F5FFE6
+L247,LEE Minus Green, FAC3D7
+L248,Half Minus Green, FFE2E4
+L249,Quarter Minus Green, FFECF0
+L269,LEE Heat Shield, FFFFFF
+L270,LEE Scrim, BEBEBE
+L271,Mirror Silver, F0F0F0
+L272,Soft Gold Reflector, F0DC96
+L273,Soft Silver Reflector, F3F3F3
+L274,Mirror Gold, EBD791
+L275,Black Scrim, BEBEBE
+L278,Eighth Plus Green, F3FFF3
+L279,Eighth Minus Green, FFF3F7
+L280,Black Foil, 000000
+L281,Three Quarter C.T. Blue, CDE6FA
+L283,One and a Half C.T. Blue, AFD9F5
+L285,Three Quarter C.T. Orange, FCCD94
+L287,Double C.T. Orange, FFA055
+L298,0.15ND, E6E6E6
+L299,1.2ND, 5F5F5F
+L441,Full C.T. Straw, FAC084
+L442,Half C.T. Straw, FCDCAD
+L443,Quarter C.T. Straw, FCEFDB
+L444,Eighth C.T. Straw, FAF3E8
+L642,Half Mustard Yellow, 968200
+L650,Industry Sodium, C8A862
+L651,HI Sodium, FF9B5F
+L652,Urban Sodium, FF8246
+L653,LO Sodium, 965500
+L740,Aurora Borealis Green, 5A6E00
+L741,Mustard Yellow, 826400
+L129,Heavy Frost, FFFFFF
+L184,Cosmetic Peach, F0E1D7
+L186,Cosmetic Silver Rose, F8DCDD
+L187,Cosmetic Rouge, F5E4D7
+L188,Cosmetic Highlight, FFEBD7
+L189,Cosmetic Silver Moss, EEEDD8
+L191,Cosmetic Aqua Blue, E9EEEE
+L216,White Diffusion, ffffff
+L217,Blue Diffusion, F5FFFF
+L220,White Frost, FFFFFF
+L221,Blue Frost, F5FFFF
+L224,Daylight Blue Frost, 96A0BE
+L225,Neutral Density Frost, 9EA0A2
+L228,Brushed Silk, FFFFFF
+L229,Quarter Tough Spun, FFFFFF
+L250,Half White Diffusion, FFFFFF
+L251,Quarter White Diffusion, FFFFFF
+L252,Eighth White Diffusion, FFFFFF
+L253,Hampshire Frost, FFFFFF
+L255,Hollywood Frost, FFFFFF
+L256,Half Hampshire Frost, FFFFFF
+L257,Quarter Hampshire Frost, FFFFFF
+L258,Eighth Hampshire Frost, FFFFFF
+L264,Tough Spun FR – 3/8, FFFFFF
+L265,Tough Spun FR – 1/4, FFFFFF
+L400,LEELux, FFFFFF
+L402,Soft Frost, FFFFFF
+L404,Half Soft Frost, FFFFFF
+L410,Opal Frost, FFFFFF
+L414,Highlight, FFFFFF
+L414P,Perforated Highlight, FFFFFF
+L416,Three Quarter White Diffusion, FFFFFF
+L420,Light Opal Frost, FFFFFF
+L429,Quiet Frost, FFFFFF
+L430,Grid Cloth, FFFFFF
+L432,Light Grid Cloth, FFFFFF
+L434,Quarter Grid Cloth, FFFFFF
+L439,Heavy Quiet Frost, FFFFFF
+L439P,Perforated Heavy Quiet Frost, FFFFFF
+L450,Three Eighth White Diffusion, FFFFFF
+L452,Sixteenth White Diffusion, FFFFFF
+L460,Quiet Grid Cloth, FFFFFF
+L462,Quiet Light Grid Cloth, FFFFFF
+L464,Quiet Quarter Grid Cloth, FFFFFF
+L705,Lily Frost, F0AAFA
+L717,Shanklin Frost, C3E1FA
+L718,Half Shanklin Frost, D4EDFA
+L720,Durham Daylight Frost, C3E1FA
+L749,Hampshire Rose, FCD3CD
+L750,Durham Frost, FAF1FE
+L774,Soft Amber Key 1, FCD2BE
+L775,Soft Amber Key 2, FCC6A5
+L791,Moroccan Frost, F5B9AA
+L801,Zircon Minus Green 1, FACDD7
+L802,Zircon Minus Green 2, FAE7EA
+L803,Zircon Minus Green 3, FCF2FA
+L804,Zircon Minus Green 4, FCF7FC
+L805,Zircon Minus Green 5, FCFAFC
+L806,Zircon Warm Amber 2, FFAA6E
+L807,Zircon Warm Amber 4, FFD291
+L808,Zircon Warm Amber 6, FFE4AA
