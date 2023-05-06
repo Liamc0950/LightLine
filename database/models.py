@@ -230,7 +230,7 @@ class Instrument(models.Model):
                 #COLOR
                 colorString = cols[9]
                 
-                colorSplit = colorString.split(" ")
+                colorSplit = re.sub('\s+', '+', colorString).split("+")
 
                 #SAVE TO ALLOW MANY TO MANY
                 instrument.save()
@@ -238,10 +238,10 @@ class Instrument(models.Model):
                 for name in colorSplit:
                     try:
                         instrument.color.add(Color.objects.get(colorCode = name))
-                        #print("FOUND " + name)
+                        print("FOUND " + name)
 
                     except:
-                        #print("NOT FOUND " + name)
+                        print("COLOR NOT FOUND " + name)
                         pass
 
 
@@ -256,10 +256,10 @@ class Instrument(models.Model):
                 for name in goboSplit:
                     try:
                         instrument.gobo = (Gobo.objects.get(goboCode = name))
-                        #print("FOUND " + name)
+                        print("GOBO FOUND " + name)
 
                     except:
-                        #print("NOT FOUND " + name)
+                        print("GOBO NOT FOUND " + name)
                         pass
 
 
