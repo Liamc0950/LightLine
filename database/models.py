@@ -96,7 +96,7 @@ class InstrumentType(models.Model):
     id = models.AutoField(primary_key=True)
     typeName = models.CharField(max_length = 64)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    load = models.IntegerField(blank=True, null=True)
+    load = models.FloatField(blank=True, null=True)
     beamAngle = models.IntegerField(blank=True, null=True)
     fieldAngle = models.IntegerField(blank=True, null=True)
     zoomAngleMin = models.IntegerField(blank=True, null=True)
@@ -122,7 +122,9 @@ class Instrument(models.Model):
     gobo = models.ForeignKey(Gobo, on_delete=models.CASCADE, blank=True, null=True)
     goboSize = models.CharField(max_length = 8, unique=False, blank=True, null=True)
     purpose = models.CharField(max_length = 128, blank=True, null=True)
-    dimmer = models.IntegerField(blank=True, null=True)
+    #Dimmer - currentyl a CharField to deal with doubled dimmers
+    #TODO - abstract Dimmer to its own class
+    dimmer = models.CharField(max_length = 32, blank=True, null=True)
     circuit = models.ForeignKey(Circuit, on_delete=models.CASCADE, blank=True, null=True)
     breakout = models.ForeignKey(Breakout, on_delete=models.CASCADE, blank=True, null=True)
     dimmerPhase = models.CharField(max_length = 8, unique=False, blank=True, null=True)
@@ -164,8 +166,7 @@ class Instrument(models.Model):
                 #CHANNEL
                 if cols[1] != '':
                     chan = cols[1]
-                    #TODO add back regex
-                    #chan = re.search('\(([^)]+)', chan).group(1)
+                    chan = re.search('\(([^)]+)', chan).group(1)
                     instrument.channel = chan
                 #DIMMER
                 if cols[2] != '':
@@ -192,14 +193,18 @@ class Instrument(models.Model):
                 else:
                     pass
                 #INSTRUMENT TYPE
+                #if instrument type exists, use existing type
                 try:
                     instrument.instrumentType =  InstrumentType.objects.get(typeName = cols[6])
+                #if no type exists, create a new one
                 except:
                     newType = InstrumentType()
                     newType.typeName = cols[6]
+
+                    #extract float from wattage by removing "w"s
                     if cols[7] != '':
-                        loadInt = int(re.sub("w", " ", cols[7]))
-                        newType.load = loadInt
+                        loadFloat = float(re.sub("w", " ", cols[7]))
+                        newType.load = loadFloat
                     else:
                         pass
                     newType.project = activeProject
