@@ -46,25 +46,51 @@
                 {% else %}
                     <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="load" data-model="database"></td>
                 {% endif %}
+                {% if instrument.accessory %}
                     <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="accessory" data-model="database">{{instrument.accessory}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="accessory" data-model="database"></td>
+                {% endif %}
                 <td data-id="{{ instrument.id }}" data-input="choice" data-type="color" data-model="Color">{{color}}
                 {% for color in instrument.getColors %}
                     <div class="editable" data-id="{{ instrument.id }}" data-input="choice" data-type="color" data-model="Color">{{color}}
                     </div>
                     <span class="dot" style= "height: 25px; width: 25px; background-color:{{color.colorHex}}; border-radius: 50%; display: inline-block;"></span>
                 {% endfor %}
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="gobo" data-model="database">{{instrument.gobo}}
+               
                     {% if instrument.gobo %}
-                        <!-- <span class="dot" style= "height: 40px; width: 40px; border-radius: 50%; display: inline-block; background: url('/static/images/{{instrument.gobo.imageUrl}}');"> -->
-                        <img src="{% static '' %}images/{{ instrument.gobo.imageUrl}}" style="height: 30px; width: 30px; border-radius: 50%;">
+                        <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="gobo" data-model="database">
+                            {{instrument.gobo}} 
+                            <img src="{% static '' %}images/{{ instrument.gobo.imageUrl}}" style="height: 30px; width: 30px; border-radius: 50%;"> 
+                        </td>
+                    {% else %}
+                        <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="gobo" data-model="database"></td>
                     {% endif %}
-                </td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="purpose" data-model="database">{{instrument.purpose}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="dimmer" data-model="database">{{instrument.dimmer}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="address" data-model="database">{{instrument.address}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="universe" data-model="database">{{instrument.universe}}</td>
-                <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="channel" data-model="database">{{instrument.channel}}</td>
-
+                {% if instrument.purpose %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="purpose" data-model="database">{{instrument.purpose}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="purpose" data-model="database"></td>
+                {% endif %}
+                {% if instrument.dimmer %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="dimmer" data-model="database">{{instrument.dimmer}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="dimmer" data-model="database"></td>
+                {% endif %}
+                {% if instrument.address %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="address" data-model="database">{{instrument.address}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="address" data-model="database"></td>
+                {% endif %}
+                {% if instrument.universe %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="universe" data-model="database">{{instrument.universe}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="universe" data-model="database"></td>
+                {% endif %}
+                {% if instrument.channel %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="channel" data-model="database">{{instrument.channel}}</td>
+                {% else %}
+                    <td class="editable" data-id="{{ instrument.id }}" data-input="text" data-type="channel" data-model="database"></td>
+                {% endif %}
 
                 <td>
                     <a href="deleteInstrument/{{instrument.id}}" class="btn btn-danger"><i class="fa fa-trash-alt"> </i></a>
