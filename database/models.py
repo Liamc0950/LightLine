@@ -207,9 +207,10 @@ class Instrument(models.Model):
                         #handle loads written in kW format
                         if "kW" in loadString:
                             loadFloat = float(re.sub("kW", " ", loadString)) * 1000
+                            print(loadFloat)
                         #if not in kW format, remove w and convert to float
                         else:
-                            loadCleaned = re.sub("w", " ", loadCleaned)
+                            loadCleaned = re.sub("w", " ", loadString)
                             loadFloat = float(loadCleaned)
                         #set load of new type to parsed wattage
                         newType.load = loadFloat
@@ -237,10 +238,10 @@ class Instrument(models.Model):
                 for name in colorSplit:
                     try:
                         instrument.color.add(Color.objects.get(colorCode = name))
-                        print("FOUND " + name)
+                        #print("FOUND " + name)
 
                     except:
-                        print("NOT FOUND " + name)
+                        #print("NOT FOUND " + name)
                         pass
 
 
@@ -255,10 +256,10 @@ class Instrument(models.Model):
                 for name in goboSplit:
                     try:
                         instrument.gobo = (Gobo.objects.get(goboCode = name))
-                        print("FOUND " + name)
+                        #print("FOUND " + name)
 
                     except:
-                        print("NOT FOUND " + name)
+                        #print("NOT FOUND " + name)
                         pass
 
 
