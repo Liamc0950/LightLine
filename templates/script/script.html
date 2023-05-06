@@ -17,6 +17,13 @@
 
 
   <div id="pdf_container"></div>
+  <div id="cue_contatiner">
+    <ul>
+      {% for cue in cueList %}
+        <li>{{cue}}</li>
+      {% endfor %}
+    </ul>    
+  </div>
 
   <button class="authButton" onclick="lastPage()">LAST</button>
   <button class="authButton"onclick="nextPage()">NEXT</button>

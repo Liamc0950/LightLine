@@ -26,6 +26,16 @@ def index(request):
     projects = Project.objects.filter(projectCreator=request.user.profile)
     activeProject = Project.objects.get(active=True, projectCreator=request.user.profile)
 
+    #try to get the active cueList
+    try:
+        activeCueList = CueList.objects.get(project = activeProject, active = True)
+    except:
+        activeCueList = CueList.objects.none()
+
+    #get all cues where cueList's project is the active project and cueList is active
+    activeCues = Cue.objects.order_by('eosCueNumber').filter(cueList__project = activeProject, cueList__active = True)
+
+
     # Create context array
     context = {
         'projects' : projects,
