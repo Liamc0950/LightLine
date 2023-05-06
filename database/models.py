@@ -227,6 +227,7 @@ class Instrument(models.Model):
                 #     newAccessory = Accessory()
                 #     newAccessory.accessoryName = line[8]
                 #     instrument.accessory = newAccessory
+                
                 #COLOR
                 colorString = cols[9]
                 

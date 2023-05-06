@@ -70,7 +70,15 @@
                                 <a>
                                 <form method="POST" action="/projects/switchActiveProject/">
                                     {% csrf_token %}
-                                    <button class="projectButton" type="submit">
+                                    <button class="projectButton" type="submit" 
+                                        style="	background: none;
+                                                color: inherit;
+                                                border: none;
+                                                padding: 0;
+                                                font: inherit;
+                                                cursor: pointer;
+                                                outline: inherit;
+                                        ">
                                         {{ project }}
                                         <input type="hidden" name="proj" value="{{ project.id }}">
                                         <input type="hidden" name="next" value="{{ request.path }}">
@@ -100,8 +108,8 @@
     </div>
     <!-- sidebar-footer  -->
     <div class="sidebar-footer">
-        <div class="dropdown">
-            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- <div class="dropdown">
+            <a href="#" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                 <i class="fa fa-cog"></i>
                 <span class="badge-sonar"></span>
             </a>
@@ -110,11 +118,11 @@
                 <a class="dropdown-item" href="#">Help</a>
                 <a class="dropdown-item" href="#">Setting</a>
             </div>
-        </div>
+        </div> -->
         <div>
             <!--LOGOUT-->
             <a href="/accounts/logout">
-                <i class="fa fa-power-off"></i>
+                LOG OUT
             </a>
         </div>
         <div class="pinned-footer">

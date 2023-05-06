@@ -24,10 +24,7 @@ def index(request):
 
     # Get projects assigned to user
     projects = Project.objects.filter(projectCreator=request.user.profile)
-    try:
-        activeProject = Project.objects.get(active=True)
-    except:
-        activeProject = None
+    activeProject = Project.objects.get(active=True, projectCreator=request.user.profile)
 
     # Create context array
     context = {
